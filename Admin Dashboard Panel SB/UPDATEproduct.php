@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Product</title>
+    <title>Update Product</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -31,35 +31,85 @@
                             <div class="row justify-content-center">
                                 <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
 
-                                    <p class="h2 mb-5 mx-1 mx-md-4 mt-4">Add Product</p>
+                                    <p class="h2 mb-5 mx-1 mx-md-4 mt-4"> Product Update</p>
 
                                     <form class="mx-1 mx-md-4" method="post" enctype="multipart/form-data">
 
+
+                                        <!-- Category Update PHP Code  -->
+                                        <?php
+                                        include 'Connection.php';
+
+                                        $updateID = $_GET['UPDATEidProduct'];
+
+                                        $select_product_data = mysqli_query($con, " SELECT * FROM `product` WHERE p_id = '$updateID' ");
+
+                                        $data_save = mysqli_fetch_assoc($select_product_data);
+
+                                        if (isset($_POST['btnAddCategory'])) {
+
+                                            $updateID_fetch = $_GET['UPDATEidProduct'];
+
+                                            $product_name = $_POST['product_category_name'];
+                                            $product_price = $_POST['product_category_price'];
+                                            $product_des = $_POST['product_category_des'];
+                                            $product_category = $_POST['p_cate'];
+                                            $product_image = $_POST['product_category_image'];
+
+
+                                            $update_query_product = mysqli_query($con, " UPDATE `product` SET `p_name`='$product_name',`p_price`='$product_price',`p_des`='$product_des',`p_cat`='$product_category',`p_image`='$product_image' WHERE p_id = '$updateID_fetch' ");
+
+                                            if ($update_query_product) {
+
+                                        ?>
+
+                                                <script>
+                                                    alert("Product Updated SuccessFully Done")
+
+                                                    location.replace('ViewProduct.php');
+                                                </script>
+
+                                            <?php
+                                            } else {
+                                            ?>
+
+                                                <script>
+                                                    alert("Product Not Update ")
+
+                                                    location.replace('ViewProduct.php');
+                                                </script>
+
+                                        <?php
+                                            }
+                                        }
+
+                                        ?>
+
                                         <div class="d-flex flex-row align-items-center mb-4">
                                             <div class="form-outline flex-fill mb-0">
-                                                <label class="form-label">Product Name</label>
-                                                <input type="text" name="pName" class="form-control" />
+                                                <label class="form-label">Product Name (Update)</label>
+                                                <input type="text" name="product_category_name" class="for-control" value="<?php echo $data_save['p_name'] ?>" id="">
                                             </div>
                                         </div>
 
                                         <div class="d-flex flex-row align-items-center mb-4">
                                             <div class="form-outline flex-fill mb-0">
-                                                <label class="form-label">Product Price</label>
-                                                <input type="text" name="pPrice" class="form-control" />
+                                                <label class="form-label">Product Price (Update)</label>
+                                                <input type="text" name="product_category_price" class="for-control" value="<?php echo $data_save['p_price'] ?>" id="">
                                             </div>
                                         </div>
 
                                         <div class="d-flex flex-row align-items-center mb-4">
                                             <div class="form-outline flex-fill mb-0">
-                                                <label class="form-label">Product Description</label>
-                                                <input type="text" name="pDes" class="form-control" />
+                                                <label class="form-label">Product des (Update)</label>
+                                                <input type="text" name="product_category_des" class="for-control" value="<?php echo $data_save['p_des'] ?>" id="">
                                             </div>
                                         </div>
 
                                         <div class="d-flex flex-row align-items-center mb-4">
                                             <div class="form-outline flex-fill mb-0">
                                                 <label class="form-label">Product Category</label>
-                                                <select name="p_cate" id="" class="form-control">
+                                                <select name="p_cate" id="" class="form-control" required>
                                                     <!-- categories get  -->
                                                     <?php
                                                     include 'Connection.php';
@@ -85,13 +135,13 @@
 
                                         <div class="d-flex flex-row align-items-center mb-4">
                                             <div class="form-outline flex-fill mb-0">
-                                                <label class="form-label">Product image</label>
-                                                <input type="file" name="pImage" class="form-control" />
+                                                <label class="form-label">Product image (Update)</label>
+                                                <input type="text" name="product_category_image" class="for-control" value="<?php echo $data_save['p_image'] ?>" id="">
                                             </div>
                                         </div>
 
                                         <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                                            <input type="submit" class="btn btn-outline-primary btn-lg" name="btnAddProduct" id="" value="Add Product">
+                                            <input type="submit" class="btn btn-outline-primary btn-lg" name="btnAddCategory" id="" value="Add Category">
                                         </div>
 
                                     </form>
@@ -107,56 +157,3 @@
 </body>
 
 </html>
-
-<!-- insert product PHP Code  -->
-<?php
-include 'Connection.php';
-
-if (isset($_POST['btnAddProduct'])) {
-
-    $p_Name = $_POST['pName'];
-    $p_Price = $_POST['pPrice'];
-    $p_Description = $_POST['pDes'];
-    $p_Category = $_POST['p_cate'];
-    $p_Image = $_FILES['pImage']['name'];
-    $p_Image_tem = $_FILES['pImage']['tmp_name'];
-
-    move_uploaded_file($p_Image_tem, "Pimages/" . $p_Image);
-
-    $product_same_validate = mysqli_query($con, " SELECT * FROM `product` WHERE p_price = '$p_Price' ");
-
-    if (mysqli_num_rows($product_same_validate) > 0) {
-
-?>
-        <script>
-            alert("This Product Already Add")
-        </script>
-
-        <?php
-
-    } else {
-
-        $insert_query_product = mysqli_query($con, " INSERT INTO `product`( `p_name`, `p_price`, `p_des`, `p_cat`, `p_image` ) VALUES (
-            '$p_Name','$p_Price','$p_Description','$p_Category','$p_Image') ");
-
-        if ($insert_query_product) {
-
-        ?>
-
-            <script>
-                alert("Product Add SuccessFully Done")
-            </script>
-
-        <?php
-        } else {
-        ?>
-
-            <script>
-                alert("Product Not Add ")
-            </script>
-
-<?php
-        }
-    }
-}
-?>

@@ -38,15 +38,7 @@
                                         <div class="d-flex flex-row align-items-center mb-4">
                                             <div class="form-outline flex-fill mb-0">
                                                 <label class="form-label">Category Name</label>
-                                                <select name="category" id="" class="form-control">
-                                                    <option value="Select Category" hidden="true">Select Category</option>
-                                                    <option value="Beauty Products">Beauty Products</option>
-                                                    <option value="Hand Bags">Hand Bags</option>
-                                                    <option value="Greeting Cards">Greeting Cards</option>
-                                                    <option value="Dolls">Dolls</option>
-                                                    <option value="Files">Files</option>
-                                                    <option value="Wallets">Wallets</option>
-                                                </select>
+                                                <input type="text" name="category" class="form-control" id="">
                                             </div>
                                         </div>
 
@@ -79,12 +71,10 @@ if (isset($_POST['btnAddCategory'])) {
     $category_same_validate = mysqli_query($con, " SELECT * FROM `p_category` WHERE c_name = '$category' ");
 
     if (mysqli_num_rows($category_same_validate) > 0) {
-
 ?>
         <script>
             alert("This Category Already Add")
         </script>
-
         <?php
 
     } else {
@@ -92,9 +82,7 @@ if (isset($_POST['btnAddCategory'])) {
         $insert_query_category = mysqli_query($con, " INSERT INTO `p_category`( `c_name`) VALUES ('$category') ");
 
         if ($insert_query_category) {
-
         ?>
-
             <script>
                 alert("Category Add SuccessFully Done")
             </script>
@@ -102,11 +90,9 @@ if (isset($_POST['btnAddCategory'])) {
         <?php
         } else {
         ?>
-
             <script>
                 alert("Category Not Add ")
             </script>
-
 <?php
         }
     }

@@ -39,11 +39,13 @@
                 <table class="text-center table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr style="color: #555; font-size: 1.2rem;">
-                            <th>Product ID</th>
-                            <th>Product Name</th>
-                            <th>Product Price</th>
-                            <th>Product image</th>
-                            <th colspan="2">Action</th>
+                            <th style="vertical-align: middle;">Product ID</th>
+                            <th style="vertical-align: middle;">Product Name</th>
+                            <th style="vertical-align: middle;">Product Price</th>
+                            <th style="vertical-align: middle;">Product Description</th>
+                            <th style="vertical-align: middle;">Product Category</th>
+                            <th style="vertical-align: middle;">Product image</th>
+                            <th style="vertical-align: middle;" colspan="2">Action</th>
                         </tr>
                     </thead>
 
@@ -53,19 +55,24 @@
                         <?php
                         include 'Connection.php';
 
-                        $select_product_data = mysqli_query($con, " SELECT * FROM `products` ");
+                        // for index counting sequence 
+                        $pID = 1;
+
+                        $select_product_data = mysqli_query($con, " SELECT * FROM `product` ");
 
                         while ($fetch_product_data = mysqli_fetch_assoc($select_product_data)) {
 
                         ?>
 
                             <tr>
-                                <td style="vertical-align: middle;"> <?php echo $fetch_product_data['p_id'] ?></td>
+                                <td style="vertical-align: middle;"> <?php echo $pID++ ?></td>
                                 <td style="vertical-align: middle;"> <?php echo $fetch_product_data['p_name'] ?></td>
                                 <td style="vertical-align: middle;"> <?php echo $fetch_product_data['p_price'] ?></td>
-                                <td style="vertical-align: middle;"> <img src="../Pimages/<?php echo  $fetch_product_data['p_image'] ?> " alt="" style="width: 75px;"> </td>
-                                <td style="vertical-align: middle;"> <a href="#" title="Edit" style="padding: 20px;"><i class="fa-solid fa-pen-to-square"></i></a> </td>
-                                <td style="vertical-align: middle;"> <a href="#" title="Remove" style="padding: 20px;"><i class="fa-solid fa-trash"></i></a> </td>
+                                <td style="vertical-align: middle;"> <?php echo $fetch_product_data['p_des'] ?></td>
+                                <td style="vertical-align: middle;"> <?php echo $fetch_product_data['p_cat'] ?></td>
+                                <td style="vertical-align: middle;"> <img src="Pimages/<?php echo  $fetch_product_data['p_image'] ?> " alt="" style="width: 75px;"> </td>
+                                <td style="vertical-align: middle;"> <a href="UPDATEproduct.php?UPDATEidProduct=<?php echo $fetch_product_data['p_id'] ?>" title="Edit" style="padding: 20px;" target="_blank"><i class="fa-solid fa-pen-to-square"></i></a> </td>
+                                <td style="vertical-align: middle;"> <a href="DELETEproduct.php?DELETEidProduct=<?php echo $fetch_product_data['p_id'] ?>" title="Remove" style="padding: 20px;" target="_blank"><i class="fa-solid fa-trash"></i></a> </td>
                             </tr>
 
                         <?php
