@@ -79,24 +79,40 @@
     <div class="row px-xl-5 pb-3">
       <!-- card  -->
 
-      <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
-        <div class="card product-item border-0 mb-4">
-          <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
-            <img class="img-fluid w-100" src="img/product-2.jpg" alt="" />
-          </div>
-          <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
-            <h6 class="text-truncate mb-3">Colorful Stylish Shirt</h6>
-            <div class="d-flex justify-content-center">
-              <h6>500</h6>
+      <!-- Product Fetch then Echo  -->
+      <?php
+      include 'Connection.php';
+
+      $select_product_stationery = mysqli_query($con, " SELECT * FROM `product` WHERE p_cat NOT IN (1) ");
+
+      while ($fetch_product_stationery = mysqli_fetch_assoc($select_product_stationery)) {
+
+      ?>
+
+        <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
+          <div class="card product-item border-0 mb-4">
+            <div class="text-center card-header product-img position-relative overflow-hidden bg-transparent border p-0">
+              <img class="img-fluid" style="width: 230px; height: 400px;" src="Pimages/<?php echo $fetch_product_stationery['p_image'] ?>" alt="" />
+            </div>
+            <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
+              <h4 class="text-truncate mb-2 mt-4" style="color: #222; text-shadow: 0 0 blue;"> <?php echo $fetch_product_stationery['p_name'] ?> </h4>
+              <div class="d-flex justify-content-center">
+                <h6>RS: <?php echo $fetch_product_stationery['p_price'] ?> </h6>
+              </div>
+            </div>
+            <div class="card-footer d-flex justify-content-between bg-light border">
+              <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
+              <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add To
+                Cart</a>
             </div>
           </div>
-          <div class="card-footer d-flex justify-content-between bg-light border">
-            <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
-            <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add To
-              Cart</a>
-          </div>
         </div>
-      </div>
+
+      <?php
+
+      }
+
+      ?>
     </div>
   </div>
   <!-- Products End -->
@@ -109,24 +125,41 @@
       </h2>
     </div>
     <div class="row px-xl-5 pb-3">
-      <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
-        <div class="card product-item border-0 mb-4">
-          <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
-            <img class="img-fluid w-100" src="img/product-2.jpg" alt="" />
-          </div>
-          <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
-            <h6 class="text-truncate mb-3">Colorful Stylish Shirt</h6>
-            <div class="d-flex justify-content-center">
-              <h6>600</h6>
+
+      <!-- Product Fetch then Echo  -->
+      <?php
+      include 'Connection.php';
+
+      $select_product_beauty = mysqli_query($con, " SELECT * FROM `product` WHERE p_cat = 1 ");
+
+      while ($fetch_product_beauty = mysqli_fetch_assoc($select_product_beauty)) {
+
+      ?>
+
+        <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
+          <div class="card product-item border-0 mb-4">
+            <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
+              <img class="img-fluid w-100" style="width: auto; height: 300px;" src="Pimages/<?php echo $fetch_product_beauty['p_image'] ?>" alt="" />
+            </div>
+            <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
+              <h6 class="text-truncate mb-3"> <?php echo $fetch_product_beauty['p_name'] ?> </h6>
+              <div class="d-flex justify-content-center">
+                <h6>RS: <?php echo $fetch_product_beauty['p_price'] ?> </h6>
+              </div>
+            </div>
+            <div class="card-footer d-flex justify-content-between bg-light border">
+              <a href="detail.php?BeautyPRODUCTid=<?php echo $fetch_product_beauty['p_id'] ?>" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
+              <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add To
+                Cart</a>
             </div>
           </div>
-          <div class="card-footer d-flex justify-content-between bg-light border">
-            <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
-            <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add To
-              Cart</a>
-          </div>
         </div>
-      </div>
+
+      <?php
+
+      }
+
+      ?>
     </div>
   </div>
   <!-- Products End -->
