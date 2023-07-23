@@ -100,12 +100,11 @@
         button.parent().parent().find('input').val(newVal);
     });
 
-    // modal 1
-
+    /*==================================================================
+ [ Show modal1 ]*/
     $('.js-show-modal1').on('click', function (e) {
         e.preventDefault();
-        var modalNumber = $(this).data('modal');
-        $('.js-modal1[data-modal="' + modalNumber + '"]').addClass('show-modal1');
+        $('.js-modal1').addClass('show-modal1');
     });
 
     $('.js-hide-modal1').on('click', function () {
