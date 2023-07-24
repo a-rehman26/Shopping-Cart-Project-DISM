@@ -85,7 +85,7 @@ session_start();
                             <p class="help-block text-danger"></p>
                         </div>
                         <div>
-                            <input type="submit" class="btn btn-primary py-2 px-4" name="btnSubmit" id="" value="Submit">
+                            <input type="submit" class="btn btn-primary py-2 px-4" name="btnSubmitContact" id="" value="Submit">
                         </div>
                     </form>
 
@@ -93,7 +93,7 @@ session_start();
                     <?php
                     include 'Connection.php';
 
-                    if (isset($_POST['btnSubmit'])) {
+                    if (isset($_POST['btnSubmitContact'])) {
 
                         $name = $_POST['name'];
                         $email = $_POST['email'];

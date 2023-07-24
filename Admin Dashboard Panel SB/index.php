@@ -112,14 +112,14 @@
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="index.php?Users">
                     <i class="fa-solid fa-users"></i>
                     <span>Users</span></a>
             </li>
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="index.php?ContactForm">
                     <i class="fa-regular fa-address-book"></i>
                     <span>Contact Form</span></a>
             </li>
@@ -261,6 +261,8 @@
                         include 'addCategory.php';
                     } else if (isset($_GET['ViewCategory'])) {
                         include 'ViewCategory.php';
+                    } else if (isset($_GET['ContactForm'])) {
+                        include 'ContactForm.php';
                     } else {
 
                         echo
