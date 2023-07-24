@@ -1,3 +1,10 @@
+<?php
+
+// Start the session
+session_start();
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,6 +35,10 @@
 
   <!-- Customized Bootstrap Stylesheet -->
   <link href="css/style.css" rel="stylesheet" />
+
+  <!-- font awesome cdn  -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
 </head>
 
 <body>
@@ -95,7 +106,8 @@
               <img class="img-fluid" style="width: 200px; height: 250px;" src="Pimages/<?php echo $fetch_product_stationery['p_image'] ?>" alt="" />
             </div>
             <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
-              <h4 class="text-truncate mt-4" style="color: #222; text-shadow: 0 0 blue;"> <?php echo $fetch_product_stationery['p_name'] ?> </h4>
+              <h4 class="text-truncate mt-4" style="color: #222; text-shadow: 0 0 blue;">
+                <?php echo $fetch_product_stationery['p_name'] ?> </h4>
               <div class="d-flex justify-content-center">
                 <h6 class="mt-1">RS: <?php echo $fetch_product_stationery['p_price'] ?> </h6>
               </div>
