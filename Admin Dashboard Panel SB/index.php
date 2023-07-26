@@ -263,6 +263,8 @@
                         include 'ViewCategory.php';
                     } else if (isset($_GET['ContactForm'])) {
                         include 'ContactForm.php';
+                    } else if (isset($_GET['Users'])) {
+                        include 'Users.php';
                     } else {
 
                         echo

@@ -82,15 +82,15 @@
                     <?php
                     include 'Connection.php';
 
-                    $select_category_product = mysqli_query($con, " SELECT DISTINCT p_name 
-                    FROM product
-                    WHERE p_cat <> 1; ");
+                    $select_category_product = mysqli_query($con, " SELECT DISTINCT p_name
+                    FROM `product`
+                    WHERE p_cat <> 1 ");
 
                     while ($fetch_stationery_product = mysqli_fetch_assoc($select_category_product)) {
 
                     ?>
 
-                        <a href="" class="nav-item nav-link"> <?php echo $fetch_stationery_product['p_name'] ?></a>
+                        <a href="schoolBag.php?SchoolBagID=<?php echo $fetch_stationery_product['p_name'] ?>" class="nav-item nav-link"> <?php echo $fetch_stationery_product['p_name'] ?> </a>
 
                     <?php
 

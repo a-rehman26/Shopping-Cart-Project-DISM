@@ -52,8 +52,8 @@
 
                                             $contact_name = $_POST['product_category_name'];
                                             $contact_email = $_POST['product_category_price'];
-                                            $contact_subject = $_POST['product_category_des'];
-                                            $contact_message = $_POST['p_cate'];
+                                            $contact_subject = $_POST['product_category_sub'];
+                                            $contact_message = $_POST['product_category_des'];
 
                                             $update_query_contact = mysqli_query($con, " UPDATE `contact` SET `name`='$contact_name',`email`='$contact_email',`subject`='$contact_subject',`message`='$contact_message' WHERE id = '$updateID_fetch' ");
 
@@ -100,7 +100,7 @@
                                         <div class="d-flex flex-row align-items-center mb-4">
                                             <div class="form-outline flex-fill mb-0">
                                                 <label class="form-label">Contact Subject (Update)</label>
-                                                <input type="text" name="product_category_des" class="for-control" value="<?php echo $data_save['subject'] ?>" id="">
+                                                <input type="text" name="product_category_sub" class="for-control" value="<?php echo $data_save['subject'] ?>" id="">
                                             </div>
                                         </div>
 
@@ -112,7 +112,7 @@
                                         </div>
 
                                         <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                                            <input type="submit" class="btn btn-outline-primary btn-lg" name="btnAddCategory" id="" value="Add Category">
+                                            <input type="submit" class="btn btn-outline-primary btn-lg" name="btnAddCategory" id="" value="Update User Data">
                                         </div>
 
                                     </form>

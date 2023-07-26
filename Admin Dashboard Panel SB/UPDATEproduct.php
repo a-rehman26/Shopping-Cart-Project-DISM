@@ -141,7 +141,7 @@
                                         </div>
 
                                         <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                                            <input type="submit" class="btn btn-outline-primary btn-lg" name="btnAddCategory" id="" value="Add Category">
+                                            <input type="submit" class="btn btn-outline-primary btn-lg" name="btnAddCategory" id="" value="Update Product">
                                         </div>
 
                                     </form>
