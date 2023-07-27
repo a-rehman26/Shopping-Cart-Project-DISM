@@ -53,13 +53,29 @@
             </form>
         </div>
         <div class="col-lg-3 col-6 text-right">
-            <a href="" class="btn border">
-                <i class="fas fa-heart text-primary"></i>
-                <span class="badge">0</span>
-            </a>
-            <a href="" class="btn border">
+
+            <a href="cart.php" class="btn border">
                 <i class="fas fa-shopping-cart text-primary"></i>
-                <span class="badge">0</span>
+                <span class="badge">
+
+                    <?php
+                    include 'Connection.php';
+
+                    if (isset($_SESSION['user_id'])) {
+
+                        $user_id_nav = $_SESSION['user_id'];
+
+                        $select_cart_rows = mysqli_query($con, "SELECT * FROM `cart` WHERE user_id = '$user_id_nav' ");
+
+                        $cart_rows_nav = mysqli_num_rows($select_cart_rows);
+
+                        echo $cart_rows_nav;
+                    } else {
+                        echo "0";
+                    }
+                    ?>
+
+                </span>
             </a>
         </div>
     </div>
@@ -480,6 +496,9 @@
 
                                             $email_db = $data_fetch_login['u_email'];
                                             $pass_db = $data_fetch_login['u_pass'];
+
+                                            $user_id = $data_fetch_login['u_id'];
+                                            $_SESSION['user_id'] = $user_id;
 
                                             if ($email_db == $email_login && $pass_db == $pass_login) {
                                     ?>

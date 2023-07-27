@@ -128,23 +128,31 @@ session_start();
 
                     ?>
 
-                        <div class="col-lg-4 col-md-6 col-sm-12 pb-1">
-                            <div class="card product-item border-0 mb-4">
-                                <div class="text-center card-header product-img position-relative overflow-hidden bg-transparent border p-0">
-                                    <img class="img-fluid" style="width: 200px; height: 280px;" src="Pimages/<?php echo $fetch_products['p_image'] ?>" alt="">
-                                </div>
-                                <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
-                                    <h6 class="text-truncate mb-3"> <?php echo $fetch_products['p_name'] ?> </h6>
-                                    <div class="d-flex justify-content-center">
-                                        <h6> <?php echo $fetch_products['p_price'] ?> </h6>
+                        <form action="" method="post">
+                            <div class="col-lg-12 col-md-6 col-sm-12 pb-1">
+                                <div class="card product-item border-0 mb-4">
+                                    <div class="text-center card-header product-img position-relative overflow-hidden bg-transparent border p-0">
+                                        <img class="img-fluid" style="width: 200px; height: 280px;" src="Pimages/<?php echo $fetch_products['p_image'] ?>" alt="">
+                                    </div>
+                                    <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
+                                        <h6 class="text-truncate mb-3"> <?php echo $fetch_products['p_name'] ?> </h6>
+                                        <div class="d-flex justify-content-center">
+                                            <h6> <?php echo $fetch_products['p_price'] ?> </h6>
+                                        </div>
+                                    </div>
+                                    <div class="card-footer d-flex justify-content-between bg-light border">
+                                        <a href="detail.php?BeautyPRODUCTid=<?php echo $fetch_products['p_id'] ?>" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
+                                        <a href="" style="text-decoration: none;" class=""><i class="fas fa-shopping-cart text-primary"></i> <input type="submit" class="btn btn-sm text-dark" value="Add To Cart" name="addToCart" id=""> </a>
                                     </div>
                                 </div>
-                                <div class="card-footer d-flex justify-content-between bg-light border">
-                                    <a href="detail.php?BeautyPRODUCTid=<?php echo $fetch_products['p_id'] ?>" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
-                                    <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
-                                </div>
                             </div>
-                        </div>
+
+                            <input type="hidden" value="<?php echo $fetch_products['p_id'] ?>" name="cart_ID" id="">
+                            <input type="hidden" name="cart_pImage" value="<?php echo $fetch_products['p_image'] ?>" id="">
+                            <input type="hidden" name="cart_pName" value="<?php echo $fetch_products['p_name'] ?>" id="">
+                            <input type="hidden" name="cart_pPrice" value="<?php echo $fetch_products['p_price'] ?>" id="">
+
+                        </form>
 
                     <?php
 
@@ -187,3 +195,70 @@ session_start();
 </body>
 
 </html>
+
+
+<?php
+include 'Connection.php';
+
+// Function to generate a unique temporary cart ID for non-logged-in users
+function generateTempCartID()
+{
+    return uniqid('temp_cart_id' . rand(), true); // Generate a unique temporary cart ID with a random prefix
+}
+
+if (isset($_POST['addToCart'])) {
+
+    $cart_p_name = $_POST['cart_pName'];
+    $cart_p_price = $_POST['cart_pPrice'];
+    $cart_p_image = $_POST['cart_pImage'];
+    $cart_p_id = $_POST['cart_ID'];
+
+    // if cart user login 
+    $user_id =  $_SESSION['user_id'];
+
+    // Check if the user is logged in
+    if (isset($_SESSION['user_id'])) {
+        // For logged-in users, use their user ID as cart ID
+        $user_id = $_SESSION['user_id'];
+    } else {
+        // For non-logged-in users, generate a temporary cart ID and set it in the session
+        if (!isset($_SESSION['temp_cart_id'])) {
+            $_SESSION['temp_cart_id'] = generateTempCartID();
+        }
+        $user_id = $_SESSION['temp_cart_id'];
+    }
+
+    $select_product_cart = mysqli_query($con, " SELECT * FROM `cart` WHERE user_id = '$user_id' AND product_id = '$cart_p_id' ");
+
+    $cart_rows = mysqli_num_rows($select_product_cart);
+
+    if ($cart_rows > 0) {
+?>
+        <script>
+            alert("This Product ALready Add in The Cart")
+        </script>
+        <?php
+    } else {
+
+        $insert_cart_product = mysqli_query($con, " INSERT INTO `cart`( `cart_name`, `cart_price`, `cart_image`, `product_id`, `user_id`) VALUES ( '$cart_p_name','$cart_p_price','$cart_p_image','$cart_p_id','$user_id') ");
+
+        if ($insert_cart_product) {
+        ?>
+            <script>
+                alert("Product Add in The CART")
+
+                location.replace('shop.php')
+            </script>
+        <?php
+        } else {
+        ?>
+            <script>
+                alert("Product NOT Add in The CART")
+            </script>
+<?php
+        }
+    }
+}
+?>
+
+<!-- cart products end php code -->
