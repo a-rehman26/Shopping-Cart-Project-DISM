@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 24, 2023 at 08:57 PM
+-- Generation Time: Jul 28, 2023 at 10:50 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -20,6 +20,29 @@ SET time_zone = "+00:00";
 --
 -- Database: `project`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cart`
+--
+
+CREATE TABLE `cart` (
+  `cart_id` int(11) NOT NULL,
+  `cart_name` varchar(255) NOT NULL,
+  `cart_price` decimal(10,2) NOT NULL,
+  `cart_image` varchar(255) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `user_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `cart`
+--
+
+INSERT INTO `cart` (`cart_id`, `cart_name`, `cart_price`, `cart_image`, `product_id`, `user_id`) VALUES
+(29, 'Wallet', 100.00, 'wallet image 02.jpg', 13, 1),
+(30, 'School Bag', 25.00, 'bag image 01.jpg', 1, 2);
 
 -- --------------------------------------------------------
 
@@ -42,7 +65,7 @@ CREATE TABLE `contact` (
 INSERT INTO `contact` (`id`, `name`, `email`, `subject`, `message`) VALUES
 (1, 'Abdul Rehman', 'abdul556@gmail.com', 'hello world', 'your product is good'),
 (2, 'Wahab Ghaffar', 'wahab12@gmail.com', 'hello world 2.0', 'testing'),
-(3, 'Hamza Afridi', 'hamza12@gmail.com', 'hello world', 'okey'),
+(3, 'Hamza Afridi', 'hamza12@gmail.com', 'okey ', 'message check'),
 (5, 'Abdul Asim', 'asim12@gmail.com', 'hello world', 'hello world hello world hello world'),
 (6, 'Laiba', 'laiba78@gmail.com', 'hello world', 'hello world testing hello world testing');
 
@@ -138,6 +161,13 @@ INSERT INTO `users` (`u_id`, `u_name`, `u_email`, `u_pass`, `u_Cpass`, `u_number
 --
 
 --
+-- Indexes for table `cart`
+--
+ALTER TABLE `cart`
+  ADD PRIMARY KEY (`cart_id`),
+  ADD KEY `product_id` (`product_id`);
+
+--
 -- Indexes for table `contact`
 --
 ALTER TABLE `contact`
@@ -167,6 +197,12 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `cart`
+--
+ALTER TABLE `cart`
+  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+
+--
 -- AUTO_INCREMENT for table `contact`
 --
 ALTER TABLE `contact`
@@ -193,6 +229,12 @@ ALTER TABLE `users`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `cart`
+--
+ALTER TABLE `cart`
+  ADD CONSTRAINT `cart_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `product` (`p_id`);
 
 --
 -- Constraints for table `product`

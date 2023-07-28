@@ -69,6 +69,7 @@ session_start();
                         </tr>
                     </thead>
 
+
                     <?php
                     include 'Connection.php';
 
@@ -82,30 +83,73 @@ session_start();
 
                     ?>
 
-                            <tbody class="align-middle">
+                            <form action="" method="post">
 
-                                <tr>
-                                    <td class="align-middle"><img src="Pimages/<?php echo $data_fetch_cart['cart_image'] ?>" alt="" style="width: 55px;"> <?php echo $data_fetch_cart['cart_name'] ?> </td>
-                                    <td class="align-middle">RS: <?php echo $data_fetch_cart['cart_price'] ?> </td>
-                                    <td class="align-middle">
-                                        <div class="input-group quantity mx-auto" style="width: 100px;">
-                                            <input type="number" class="form-control form-control-sm bg-secondary text-center" min="1" max="3" value="1">
-                                        </div>
-                                    </td>
-                                    <td class="align-middle">RS: 10</td>
-                                    <td class="align-middle"> <input type="submit" value="Remove" name="" class="btn btn-sm btn-outline-danger" id=""> </button></td>
-                                </tr>
+                                <tbody class="align-middle">
 
-                            </tbody>
+                                    <tr>
+                                        <td class="align-middle"><img src="Pimages/<?php echo $data_fetch_cart['cart_image'] ?>" alt="" style="width: 55px;"> <?php echo $data_fetch_cart['cart_name'] ?> </td>
+                                        <td class="align-middle">RS: <?php echo $data_fetch_cart['cart_price'] ?> </td>
+                                        <input type="hidden" class="cart_price" name="" value="<?php echo $data_fetch_cart['cart_price'] ?>" id="">
+                                        <td class="align-middle">
+                                            <div class="input-group quantity mx-auto" style="width: 100px;">
+                                                <input type="number" class="form-control form-control-sm bg-secondary text-center cart_quantity" min="1" max="3" value="1" onchange="cart_quantity()">
+                                            </div>
+                                        </td>
+                                        <td class="align-middle cart_total_price">RS: 0 </td>
+                                        <td class="align-middle"> <input type="submit" value="Remove" name="remove_btn" class="btn btn-sm btn-outline-danger" id=""> </td>
+                                    </tr>
+
+                                    <form action="" method="post">
+
+                                        <input type="hidden" name="product_ID" value="<?php echo $data_fetch_cart['product_id'] ?>" id="">
+
+                                    </form>
+
+                                    <!-- remove product php code  -->
+                                    <?php
+                                    include 'Connection.php';
+
+                                    if (isset($_POST['remove_btn'])) {
+
+                                        $user_id_FORremove =  $_SESSION['user_id'];
+                                        $product_id = $_POST['product_ID'];
+
+                                        $select_product_remove = mysqli_query($con, " DELETE FROM `cart` WHERE user_id = '$user_id_FORremove' AND product_id = '$product_id' ");
+
+                                        if ($select_product_remove) {
+                                    ?>
+                                            <script>
+                                                alert("Product Removed")
+                                                location.replace('cart.php');
+                                                exit();
+                                            </script>
+                                        <?php
+                                        } else {
+                                        ?>
+                                            <script>
+                                                alert("Product Not Removed")
+                                            </script>
+                                    <?php
+                                        }
+                                    }
+
+                                    ?>
+
+                                </tbody>
+
+                            </form>
 
                     <?php
 
                         }
                     }
 
-
                     ?>
+
+
                 </table>
+
             </div>
             <div class="col-lg-4">
 
@@ -114,19 +158,12 @@ session_start();
                         <h4 class="font-weight-semi-bold m-0">Cart Summary</h4>
                     </div>
                     <div class="card-body">
-                        <div class="d-flex justify-content-between mb-3 pt-1">
-                            <h6 class="font-weight-medium">Subtotal</h6>
-                            <h6 class="font-weight-medium">RS: 10</h6>
-                        </div>
-                        <div class="d-flex justify-content-between">
-                            <h6 class="font-weight-medium">Shipping</h6>
-                            <h6 class="font-weight-medium">RS: 0</h6>
-                        </div>
+
                     </div>
                     <div class="card-footer border-secondary bg-transparent">
                         <div class="d-flex justify-content-between mt-2">
-                            <h5 class="font-weight-bold">Total</h5>
-                            <h5 class="font-weight-bold">RS: 10</h5>
+                            <h5 class="font-weight-bold">CART SUBTOTAL</h5>
+                            <h5 class="font-weight-bold" id="cart_total">RS: 0 </h5>
                         </div>
                         <button class="btn btn-block btn-primary my-3 py-3">Proceed To Checkout</button>
                     </div>
@@ -165,3 +202,29 @@ session_start();
 </body>
 
 </html>
+
+<!-- js price cart  -->
+<script>
+    let cartPrice = document.getElementsByClassName('cart_price');
+    let cartQuantity = document.getElementsByClassName('cart_quantity');
+    let cartTotal = document.getElementsByClassName('cart_total_price');
+
+    let cartSubTotal = document.getElementById('cart_total');
+
+    gTotal = 0;
+
+    function cart_quantity() {
+        gTotal = 0;
+
+        for (i = 0; i < cartPrice.length; i++) {
+            cartTotal[i].innerText = (cartPrice[i].value) * (cartQuantity[i].value);
+
+            gTotal = gTotal + (cartPrice[i].value) * (cartQuantity[i].value);
+
+        }
+
+        cartSubTotal.innerText = gTotal;
+    }
+
+    cart_quantity();
+</script>
