@@ -30,7 +30,7 @@
         </div>
         <div class="col-lg-3 col-6 text-right">
 
-            <a href="" class="btn border">
+            <a href="cart.php" class="btn border">
                 <i class="fas fa-shopping-cart text-primary"></i>
                 <span class="badge">
 
@@ -151,7 +151,6 @@
 
                     <div class="navbar-nav ml-auto py-0">
                         <?php if (isset($_SESSION['user_name'])) { ?>
-                            <!-- If the user is logged in, show their name and a dropdown menu with logout option -->
                             <div class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
                                     <i class="fa-solid fa-user mr-2"></i>
@@ -162,7 +161,6 @@
                                 </div>
                             </div>
                         <?php } else { ?>
-                            <!-- If the user is not logged in, show the login link -->
                             <a href="#" class="nav-item nav-link" data-toggle="modal" data-target="#myModal">
                                 <i class="fa-solid fa-user mr-2"></i>
                                 Login
