@@ -10,7 +10,7 @@ session_start();
 
 <head>
     <meta charset="utf-8">
-    <title>School Bag</title>
+    <title>Products</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="Free HTML Templates" name="keywords">
     <meta content="Free HTML Templates" name="description">
@@ -92,23 +92,31 @@ session_start();
 
                     ?>
 
-                            <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
-                                <div class="card product-item border-0 mb-4">
-                                    <div class="text-center card-header product-img position-relative overflow-hidden bg-transparent border p-0">
-                                        <img class="img-fluid" style="width: 200px; height: 280px;" src="Pimages/<?php echo $fetch_products['p_image'] ?>" alt="">
-                                    </div>
-                                    <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
-                                        <h6 class="text-truncate mb-3"> <?php echo $fetch_products['p_name'] ?> </h6>
-                                        <div class="d-flex justify-content-center">
-                                            <h6> <?php echo $fetch_products['p_price'] ?> </h6>
+                            <form action="add_to _cart_code.php" method="post">
+                                <div class="col-lg-12 col-md-6 col-sm-12 pb-1">
+                                    <div class="card product-item border-0 mb-4">
+                                        <div class="text-center card-header product-img position-relative overflow-hidden bg-transparent border p-0">
+                                            <img class="img-fluid" style="width: 200px; height: 280px;" src="Pimages/<?php echo $fetch_products['p_image'] ?>" alt="">
+                                        </div>
+                                        <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
+                                            <h6 class="text-truncate mb-3"> <?php echo $fetch_products['p_name'] ?> </h6>
+                                            <div class="d-flex justify-content-center">
+                                                <h6> <?php echo $fetch_products['p_price'] ?> </h6>
+                                            </div>
+                                        </div>
+                                        <div class="card-footer d-flex justify-content-between bg-light border">
+                                            <a href="detail.php?BeautyPRODUCTid=<?php echo $fetch_products['p_id'] ?>" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
+                                            <a href="" style="text-decoration: none;" class=""><i class="fas fa-shopping-cart text-primary"></i> <input type="submit" class="btn btn-sm text-dark" value="Add To Cart" name="addToCart" id=""> </a>
                                         </div>
                                     </div>
-                                    <div class="card-footer d-flex justify-content-between bg-light border">
-                                        <a href="detail.php?BeautyPRODUCTid=<?php echo $fetch_products['p_id'] ?>" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
-                                        <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
-                                    </div>
                                 </div>
-                            </div>
+
+                                <input type="hidden" value="<?php echo $fetch_products['p_id'] ?>" name="cart_ID" id="">
+                                <input type="hidden" name="cart_pImage" value="<?php echo $fetch_products['p_image'] ?>" id="">
+                                <input type="hidden" name="cart_pName" value="<?php echo $fetch_products['p_name'] ?>" id="">
+                                <input type="hidden" name="cart_pPrice" value="<?php echo $fetch_products['p_price'] ?>" id="">
+
+                            </form>
 
                     <?php
 

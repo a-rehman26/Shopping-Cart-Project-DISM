@@ -82,7 +82,7 @@
 
                             ?>
 
-                                <a href="" class="dropdown-item"> <?php echo $product_beauty['p_name'] ?> </a>
+                                <a href="schoolBag.php?SchoolBagID=<?php echo $product_beauty['p_name'] ?>" class="nav-item nav-link"> <?php echo $product_beauty['p_name'] ?> </a>
 
                             <?php
 

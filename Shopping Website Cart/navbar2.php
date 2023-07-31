@@ -71,7 +71,19 @@
 
                         echo $cart_rows_nav;
                     } else {
-                        echo "0";
+
+                        if (isset($_SESSION['temp_cart_id'])) {
+
+                            $temp_cart_id = $_SESSION['temp_cart_id'];
+
+                            $select_temp_cart_items = mysqli_query($con, " SELECT * FROM `cart` WHERE user_id = '$temp_cart_id' ");
+
+                            $cart_rows_nav_tem = mysqli_num_rows($select_temp_cart_items);
+
+                            echo $cart_rows_nav_tem;
+                        } else {
+                            echo "0";
+                        }
                     }
                     ?>
 
@@ -107,7 +119,7 @@
 
                             ?>
 
-                                <a href="" class="dropdown-item"> <?php echo $product_beauty['p_name'] ?> </a>
+                                <a href="schoolBag.php?SchoolBagID=<?php echo $product_beauty['p_name'] ?>" class="nav-item nav-link"> <?php echo $product_beauty['p_name'] ?> </a>
 
                             <?php
 
@@ -132,7 +144,7 @@
 
                     ?>
 
-                        <a href="" class="nav-item nav-link"> <?php echo $fetch_stationery_product['p_name'] ?></a>
+                        <a href="schoolBag.php?SchoolBagID=<?php echo $fetch_stationery_product['p_name'] ?>" class="nav-item nav-link"> <?php echo $fetch_stationery_product['p_name'] ?> </a>
 
                     <?php
 

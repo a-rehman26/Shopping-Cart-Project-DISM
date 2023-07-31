@@ -69,9 +69,10 @@ session_start();
                         </tr>
                     </thead>
 
-
                     <?php
                     include 'Connection.php';
+
+                    // fetch cart login user 
 
                     if (isset($_SESSION['user_id'])) {
 
@@ -140,8 +141,79 @@ session_start();
 
                             </form>
 
+                            <?php
+
+                        }
+                    } else {
+
+                        // for fetch cart non login user
+
+                        if (isset($_SESSION['temp_cart_id'])) {
+
+                            $user_id_non_login =  $_SESSION['temp_cart_id'];
+
+                            $select_cart_data_non_login = mysqli_query($con, " SELECT * FROM `cart` WHERE user_id = '$user_id_non_login' ");
+
+                            while ($data_fetch_cart_non_login = mysqli_fetch_assoc($select_cart_data_non_login)) {
+                            ?>
+
+
+                                <tbody>
+
+                                    <form action="" method="post">
+
+                                        <tr>
+                                            <td class="align-middle"><img src="Pimages/<?php echo $data_fetch_cart_non_login['cart_image'] ?>" alt="" style="width: 55px;"> <?php echo $data_fetch_cart_non_login['cart_name'] ?> </td>
+                                            <td class="align-middle">RS: <?php echo $data_fetch_cart_non_login['cart_price'] ?> </td>
+                                            <input type="hidden" class="cart_price" name="" value="<?php echo $data_fetch_cart_non_login['cart_price'] ?>" id="">
+                                            <td class="align-middle">
+                                                <div class="input-group quantity mx-auto" style="width: 100px;">
+                                                    <input type="number" class="form-control form-control-sm bg-secondary text-center cart_quantity" min="1" max="3" value="1" onchange="cart_quantity()">
+                                                </div>
+                                            </td>
+                                            <td class="align-middle cart_total_price">RS: 0 </td>
+                                            <td class="align-middle"> <input type="submit" value="Remove" name="remove_btn_non_login" class="btn btn-sm btn-outline-danger" id=""> </td>
+                                        </tr>
+
+
+                                        <input type="hidden" name="product_ID_non" value="<?php echo $data_fetch_cart_non_login['product_id'] ?>" id="">
+
+                                    </form>
+
+                                </tbody>
+
+                                <!-- remove product php code  -->
+                                <?php
+                                include 'Connection.php';
+
+                                if (isset($_POST['remove_btn_non_login'])) {
+
+                                    $user_id_FORremove_non_login =  $_SESSION['temp_cart_id'];
+                                    $product_id_non_user = $_POST['product_ID_non'];
+
+                                    $select_product_remove_non_user = mysqli_query($con, " DELETE FROM `cart` WHERE user_id = '$user_id_FORremove_non_login' AND product_id = '$product_id_non_user' ");
+
+                                    if ($select_product_remove_non_user) {
+                                ?>
+                                        <script>
+                                            alert("Product Removed")
+                                            location.replace('cart.php');
+                                            exit();
+                                        </script>
+                                    <?php
+                                    } else {
+                                    ?>
+                                        <script>
+                                            alert("Product Not Removed")
+                                        </script>
+                                <?php
+                                    }
+                                }
+
+                                ?>
                     <?php
 
+                            }
                         }
                     }
 
