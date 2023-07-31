@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 28, 2023 at 10:50 PM
+-- Generation Time: Jul 31, 2023 at 10:01 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -41,8 +41,10 @@ CREATE TABLE `cart` (
 --
 
 INSERT INTO `cart` (`cart_id`, `cart_name`, `cart_price`, `cart_image`, `product_id`, `user_id`) VALUES
-(29, 'Wallet', 100.00, 'wallet image 02.jpg', 13, 1),
-(30, 'School Bag', 25.00, 'bag image 01.jpg', 1, 2);
+(61, 'Wallet', 100.00, 'wallet image 02.jpg', 13, 1),
+(62, 'Makeup Box', 130.00, 'eye lashes box image 01.webp', 17, 1),
+(70, 'Perfume', 200.00, 'perfume image 01.webp', 19, 2),
+(72, 'School Bag', 25.00, 'bag image 01.jpg', 1, 2);
 
 -- --------------------------------------------------------
 
@@ -200,7 +202,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
 
 --
 -- AUTO_INCREMENT for table `contact`
