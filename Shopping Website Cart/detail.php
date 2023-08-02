@@ -74,80 +74,61 @@ session_start();
 
             ?>
 
-                    <div class="col-lg-5 pb-5">
-                        <div id="product-carousel" class="carousel slide" data-ride="carousel">
-                            <div class="carousel-inner border">
-                                <div class="carousel-item active text-center">
-                                    <img class="" style="width: 300px; height: 400px;" src="Pimages/<?php echo $fetch_product_detail['p_image'] ?> " alt="Image">
-                                </div>
-                                <div class="carousel-item text-center">
-                                    <img class="" style="width: 300px; height: 400px;" src="Pimages/<?php echo $fetch_product_detail['p_image'] ?> " alt="Image">
-                                </div>
-                                <div class="carousel-item text-center">
-                                    <img class="" style="width: 300px; height: 400px;" src="Pimages/<?php echo $fetch_product_detail['p_image'] ?> " alt="Image">
-                                </div>
-                                <div class="carousel-item text-center">
-                                    <img class="" style="width: 300px; height: 400px;" src="Pimages/<?php echo $fetch_product_detail['p_image'] ?> " alt="Image">
-                                </div>
-                            </div>
-                            <a class="carousel-control-prev" href="#product-carousel" data-slide="prev">
-                                <i class="fa fa-2x fa-angle-left text-dark"></i>
-                            </a>
-                            <a class="carousel-control-next" href="#product-carousel" data-slide="next">
-                                <i class="fa fa-2x fa-angle-right text-dark"></i>
-                            </a>
-                        </div>
-                    </div>
+                    <form action="add_to _cart_code.php" class="d-flex" method="post">
 
-                    <div class="col-lg-7 pb-5">
-                        <h3 class="font-weight-semi-bold"> <?php echo $fetch_product_detail['p_name'] ?> </h3>
-                        <div class="d-flex mb-3">
-                            <div class="text-primary mr-2">
-                                <small class="fas fa-star"></small>
-                                <small class="fas fa-star"></small>
-                                <small class="fas fa-star"></small>
-                                <small class="fas fa-star-half-alt"></small>
-                                <small class="far fa-star"></small>
+                        <div class="col-lg-5 pb-5">
+                            <div id="product-carousel" class="carousel slide" data-ride="carousel">
+                                <div class="carousel-inner border">
+                                    <div class="carousel-item active text-center">
+                                        <img class="" style="width: 300px; height: 400px;" src="Pimages/<?php echo $fetch_product_detail['p_image'] ?> " alt="Image">
+                                    </div>
+                                    <div class="carousel-item text-center">
+                                        <img class="" style="width: 300px; height: 400px;" src="Pimages/<?php echo $fetch_product_detail['p_image'] ?> " alt="Image">
+                                    </div>
+                                    <div class="carousel-item text-center">
+                                        <img class="" style="width: 300px; height: 400px;" src="Pimages/<?php echo $fetch_product_detail['p_image'] ?> " alt="Image">
+                                    </div>
+                                    <div class="carousel-item text-center">
+                                        <img class="" style="width: 300px; height: 400px;" src="Pimages/<?php echo $fetch_product_detail['p_image'] ?> " alt="Image">
+                                    </div>
+                                </div>
+                                <a class="carousel-control-prev" href="#product-carousel" data-slide="prev">
+                                    <i class="fa fa-2x fa-angle-left text-dark"></i>
+                                </a>
+                                <a class="carousel-control-next" href="#product-carousel" data-slide="next">
+                                    <i class="fa fa-2x fa-angle-right text-dark"></i>
+                                </a>
                             </div>
-                            <small class="pt-1">(50 Reviews)</small>
                         </div>
-                        <h3 class="font-weight-semi-bold mb-4">RS: <?php echo $fetch_product_detail['p_price'] ?></h3>
-                        <p class="mb-4"> <?php echo $fetch_product_detail['p_des'] ?> </p>
 
-                        <div class="d-flex align-items-center mb-4 pt-2">
-                            <div class="input-group quantity mr-3" style="width: 130px;">
-                                <div class="input-group-btn">
-                                    <button class="btn btn-primary btn-minus">
-                                        <i class="fa fa-minus"></i>
-                                    </button>
+                        <div class="col-lg-7 pb-5">
+                            <h3 class="font-weight-semi-bold"> <?php echo $fetch_product_detail['p_name'] ?> </h3>
+                            <div class="d-flex mb-3">
+                                <div class="text-primary mr-2">
+                                    <small class="fas fa-star"></small>
+                                    <small class="fas fa-star"></small>
+                                    <small class="fas fa-star"></small>
+                                    <small class="fas fa-star-half-alt"></small>
+                                    <small class="far fa-star"></small>
                                 </div>
-                                <input type="text" class="form-control bg-secondary text-center" value="1">
-                                <div class="input-group-btn">
-                                    <button class="btn btn-primary btn-plus">
-                                        <i class="fa fa-plus"></i>
-                                    </button>
-                                </div>
+                                <small class="pt-1">(50 Reviews)</small>
                             </div>
-                            <button class="btn btn-primary px-3"><i class="fa fa-shopping-cart mr-1"></i> Add To Cart</button>
-                        </div>
-                        <div class="d-flex pt-2">
-                            <p class="text-dark font-weight-medium mb-0 mr-2">Share on:</p>
-                            <div class="d-inline-flex">
-                                <a class="text-dark px-2" href="">
-                                    <i class="fab fa-facebook-f"></i>
-                                </a>
-                                <a class="text-dark px-2" href="">
-                                    <i class="fab fa-twitter"></i>
-                                </a>
-                                <a class="text-dark px-2" href="">
-                                    <i class="fab fa-linkedin-in"></i>
-                                </a>
-                                <a class="text-dark px-2" href="">
-                                    <i class="fab fa-pinterest"></i>
-                                </a>
+                            <h3 class="font-weight-semi-bold mb-4">RS: <?php echo $fetch_product_detail['p_price'] ?></h3>
+                            <p class="mb-4"> <?php echo $fetch_product_detail['p_des'] ?> </p>
+
+                            <div class="d-flex align-items-center mb-4 pt-2">
+
+                                <a href="" style="text-decoration: none;"> <input type="submit" class="btn btn-outline-primary text-dark" value="Add To Cart" name="addToCart" id=""> </a>
+
                             </div>
-                        </div>
-                    </div>
+
+                            <input type="hidden" value="<?php echo $fetch_product_detail['p_id'] ?>" name="cart_ID" id="">
+                            <input type="hidden" name="cart_pImage" value="<?php echo $fetch_product_detail['p_image'] ?>" id="">
+                            <input type="hidden" name="cart_pName" value="<?php echo $fetch_product_detail['p_name'] ?>" id="">
+                            <input type="hidden" name="cart_pPrice" value="<?php echo $fetch_product_detail['p_price'] ?>" id="">
+
+                    </form>
+
 
             <?php
 
@@ -155,9 +136,31 @@ session_start();
             }
 
             ?>
+
+            <div class="d-flex pt-2">
+                <p class="text-dark font-weight-medium mb-0 mr-2">Share on:</p>
+                <div class="d-inline-flex">
+                    <a class="text-dark px-2" href="">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a class="text-dark px-2" href="">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a class="text-dark px-2" href="">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a class="text-dark px-2" href="">
+                        <i class="fab fa-pinterest"></i>
+                    </a>
+                </div>
+            </div>
         </div>
 
     </div>
+
+    </div>
+
+
     <!-- Shop Detail End -->
 
 

@@ -117,7 +117,11 @@ session_start();
               </div>
               <div class="card-footer d-flex justify-content-between bg-light border">
                 <a href="detail.php?BeautyPRODUCTid=<?php echo $fetch_product_stationery['p_id'] ?>" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
-                <a href="" style="text-decoration: none;" class=""><i class="fas fa-shopping-cart text-primary"></i> <input type="submit" class="btn btn-sm text-dark" value="Add To Cart" name="addToCart" id=""> </a>
+
+                <!-- <a href="" style="text-decoration: none;"> <i class="fas fa-shopping-cart text-primary"></i> <input type="submit" class="btn btn-sm text-dark" value="Add To Cart" name="addToCart" id=""> </a> -->
+
+                <button type="submit" class="btn btn-sm text-dark" name="addToCart"><i class="fas fa-shopping-cart text-primary"></i> Add To Cart</button>
+
               </div>
             </div>
           </div>
