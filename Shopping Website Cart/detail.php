@@ -31,6 +31,50 @@ session_start();
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
+
+    <style>
+        .modal-dialog {
+            height: 50%;
+            width: 50%;
+            margin: auto;
+        }
+
+
+        .modal-header {
+            color: white;
+            background-color: #007bff;
+        }
+
+        textarea {
+            border: 1px solid whitesmoke;
+            box-shadow: none !important;
+            -webkit-appearance: none;
+            outline: 0px !important;
+            margin: 10px;
+        }
+
+        /* 
+        .openmodal {
+            margin-left: 35%;
+            width: 25%;
+            margin-top: 25%;
+        } */
+
+        .icon1 {
+            color: #007bff;
+
+        }
+
+        /* 
+        a {
+            margin: auto;
+        } */
+
+        input {
+            color: black;
+        }
+    </style>
+
 </head>
 
 <body>
@@ -116,9 +160,14 @@ session_start();
                             <h5 class="font-weight-semi-bold mb-4">RS: <?php echo $fetch_product_detail['p_price'] ?></h5>
                             <p class="mb-4"> <?php echo $fetch_product_detail['p_des'] ?> </p>
 
-                            <h5 class="font-weight-semi-bold pb-2"> <a href="">Feedback Form</a> </h5>
+                            <div class="col-lg-4 d-flex align-items-center mb-4 pt-2">
 
-                            <div class="d-flex align-items-center mb-4 pt-2">
+                                <!--Modal Launch Button-->
+                                <button type="button" class="btn btn-sm btn-primary openmodal" data-toggle="modal" data-target="#myModal2">FeedBack Form</button>
+
+                            </div>
+
+                            <div class="col-lg-4 d-flex align-items-center mb-4 pt-2">
 
                                 <a href="" style="text-decoration: none;"> <input type="submit" class="btn btn-outline-primary text-dark" value="Add To Cart" name="addToCart" id=""> </a>
 
@@ -288,3 +337,78 @@ session_start();
 </body>
 
 </html>
+
+<!--Division for Modal-->
+<div id="myModal2" class="modal fade" role="dialog">
+
+    <!--Modal-->
+    <div class="modal-dialog">
+
+        <form action="" method="post" class="formmodel">
+            <!--Modal Content-->
+            <div class="modal-content">
+
+                <!-- Modal Header-->
+                <div class="modal-header">
+                    <h3>Feedback Request</h3>
+
+                    <!--Close/Cross Button-->
+                    <button type="button" class="close" data-dismiss="modal" style="color: white;">&times;</button>
+                </div>
+
+                <!-- Modal Body-->
+                <div class="modal-body text-center">
+                    <i class="far fa-file-alt fa-4x mb-3 animated rotateIn icon1"></i>
+                    <h3>Your opinion matters</h3>
+                    <h5>Help us improve our product? <strong>Give us your feedback.</strong></h5>
+                    <hr>
+                    <h6>Your Rating</h6>
+                </div>
+
+                <!-- Radio Buttons for Rating-->
+                <div style="display: flex; align-items: baseline;" class="form-check mb-4">
+                    <input name="feedback" type="radio" id="Very Good" style="display: block;">
+                    <label class="" style="margin: 0 10px;" for="Very Good">Very good</label>
+                </div>
+                <div style="display: flex; align-items: baseline;" class="form-check mb-4 d-flex">
+                    <input name="feedback" type="radio" id="Good" style="display: block;">
+                    <label class="" style="margin: 0 10px;" for="Good">Good</label>
+                </div>
+                <div style="display: flex; align-items: baseline;" class="form-check mb-4 d-flex">
+                    <input name="feedback" type="radio" id="Normal" style="display: block;">
+                    <label class="" style="margin: 0 10px;" for="Normal">Normal</label>
+                </div>
+                <div style="display: flex; align-items: baseline;" class="form-check mb-4 d-flex">
+                    <input name="feedback" type="radio" id="Bad" style="display: block;">
+                    <label class="" style="margin: 0 10px;" for="Bad">Bad</label>
+                </div>
+                <div style="display: flex; align-items: baseline;" class="form-check mb-4 d-flex">
+                    <input name="feedback" type="radio" id="Very Bad" style="display: block;">
+                    <label class="" style="margin: 0 10px;" for="Very Bad">Very Bad</label>
+                </div>
+
+                <!--Text Message-->
+                <div class="text-center">
+                    <h4>What could we improve?</h4>
+                </div>
+                <textarea type="textarea" placeholder="Your Message" rows="6"></textarea>
+
+
+                <!-- Modal Footer-->
+                <div class="modal-footer">
+
+                    <input type="submit" class="btn btn-primary " name="" value="Send" id="">
+                    <a href="" class="btn btn-outline-primary" data-dismiss="modal">Cancel</a>
+                </div>
+
+            </div>
+
+        </form>
+    </div>
+
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>

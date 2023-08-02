@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 31, 2023 at 10:01 PM
+-- Generation Time: Aug 02, 2023 at 10:16 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -44,7 +44,9 @@ INSERT INTO `cart` (`cart_id`, `cart_name`, `cart_price`, `cart_image`, `product
 (61, 'Wallet', 100.00, 'wallet image 02.jpg', 13, 1),
 (62, 'Makeup Box', 130.00, 'eye lashes box image 01.webp', 17, 1),
 (70, 'Perfume', 200.00, 'perfume image 01.webp', 19, 2),
-(72, 'School Bag', 25.00, 'bag image 01.jpg', 1, 2);
+(72, 'School Bag', 25.00, 'bag image 01.jpg', 1, 2),
+(74, 'Perfume', 200.00, 'perfume image 01.webp', 19, 5),
+(75, 'Doll', 55.00, 'doll image 03.webp', 15, 5);
 
 -- --------------------------------------------------------
 
@@ -156,7 +158,8 @@ INSERT INTO `users` (`u_id`, `u_name`, `u_email`, `u_pass`, `u_Cpass`, `u_number
 (1, 'Abdul Rehman', 'abdul556@gmail.com', '123', '123', '03112682258', '85689'),
 (2, 'Waqas Ahmed', 'waqas11@gmail.com', '12345', '12345', '03244574589', '82865'),
 (3, 'Hamza Afridi', 'hamza12@gmail.com', '', '', '', '95043'),
-(4, 'Abdul Asim', 'asim12@gmail.com', '', '', '', '29032');
+(4, 'Abdul Asim', 'asim12@gmail.com', '', '', '', '29032'),
+(5, 'Laiba Khan', 'laiba123@gmail.com', 'laiba123', 'laiba123', '03115478965', '21446');
 
 --
 -- Indexes for dumped tables
@@ -202,7 +205,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
+  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
 
 --
 -- AUTO_INCREMENT for table `contact`
@@ -226,7 +229,7 @@ ALTER TABLE `p_category`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `u_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `u_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables
