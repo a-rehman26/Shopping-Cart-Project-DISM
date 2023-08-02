@@ -115,12 +115,12 @@ session_start();
                   <h6 class="mt-1">RS: <?php echo $fetch_product_stationery['p_price'] ?> </h6>
                 </div>
               </div>
-              <div class="card-footer d-flex justify-content-between bg-light border">
+              <div class="card-footer d-flex justify-content-between bg-light border" style="width: 280px;">
                 <a href="detail.php?BeautyPRODUCTid=<?php echo $fetch_product_stationery['p_id'] ?>" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
 
                 <!-- <a href="" style="text-decoration: none;"> <i class="fas fa-shopping-cart text-primary"></i> <input type="submit" class="btn btn-sm text-dark" value="Add To Cart" name="addToCart" id=""> </a> -->
 
-                <button type="submit" class="btn btn-sm text-dark" name="addToCart"><i class="fas fa-shopping-cart text-primary"></i> Add To Cart</button>
+                <button type="submit" style="height: 25px;" class="btn btn-sm text-dark" name="addToCart"><i class="fas fa-shopping-cart text-primary"></i> Add To Cart</button>
 
               </div>
             </div>
@@ -169,8 +169,8 @@ session_start();
 
           <div class="col-lg-12 col-md-6 col-sm-12 pb-1">
             <div class="card product-item border-0 mb-4">
-              <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
-                <img class="img-fluid w-100" style="width: 200px; height: 350px;" src="Pimages/<?php echo $fetch_product_beauty['p_image'] ?>" alt="" />
+              <div class="card-header text-center product-img position-relative overflow-hidden bg-transparent border p-0">
+                <img class="img-fluid" style="width: 280px; height: 350px;" src="Pimages/<?php echo $fetch_product_beauty['p_image'] ?>" alt="" />
               </div>
               <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
                 <h6 class="text-truncate mb-3"> <?php echo $fetch_product_beauty['p_name'] ?> </h6>
@@ -178,9 +178,14 @@ session_start();
                   <h6>RS: <?php echo $fetch_product_beauty['p_price'] ?> </h6>
                 </div>
               </div>
-              <div class="card-footer d-flex justify-content-between bg-light border">
+              <div class="card-footer d-flex justify-content-between bg-light border" style="width: 360px;">
                 <a href="detail.php?BeautyPRODUCTid=<?php echo $fetch_product_beauty['p_id'] ?>" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
-                <a href="" style="text-decoration: none;" class=""><i class="fas fa-shopping-cart text-primary"></i> <input type="submit" class="btn btn-sm text-dark" value="Add To Cart" name="addToCart" id=""> </a>
+
+                <!-- <a href="" style="text-decoration: none;" class=""><i class="fas fa-shopping-cart text-primary"></i> <input type="submit" 
+                class="btn btn-sm text-dark" value="Add To Cart" name="addToCart" id=""> </a> -->
+
+                <button type="submit" style="height: 25px;" class="btn btn-sm text-dark" name="addToCart"><i class="fas fa-shopping-cart text-primary"></i> Add To Cart</button>
+
               </div>
             </div>
           </div>

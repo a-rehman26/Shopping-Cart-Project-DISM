@@ -102,8 +102,8 @@ session_start();
                         </div>
 
                         <div class="col-lg-7 pb-5">
-                            <h3 class="font-weight-semi-bold"> <?php echo $fetch_product_detail['p_name'] ?> </h3>
-                            <div class="d-flex mb-3">
+                            <h2 class="font-weight-semi-bold pb-2"> <?php echo $fetch_product_detail['p_name'] ?> </h2>
+                            <!-- <div class="d-flex mb-3">
                                 <div class="text-primary mr-2">
                                     <small class="fas fa-star"></small>
                                     <small class="fas fa-star"></small>
@@ -112,9 +112,11 @@ session_start();
                                     <small class="far fa-star"></small>
                                 </div>
                                 <small class="pt-1">(50 Reviews)</small>
-                            </div>
-                            <h3 class="font-weight-semi-bold mb-4">RS: <?php echo $fetch_product_detail['p_price'] ?></h3>
+                            </div> -->
+                            <h5 class="font-weight-semi-bold mb-4">RS: <?php echo $fetch_product_detail['p_price'] ?></h5>
                             <p class="mb-4"> <?php echo $fetch_product_detail['p_des'] ?> </p>
+
+                            <h5 class="font-weight-semi-bold pb-2"> <a href="">Feedback Form</a> </h5>
 
                             <div class="d-flex align-items-center mb-4 pt-2">
 
