@@ -4,7 +4,7 @@ session_start();
 
 include 'Connection.php';
 
-// Function to generate a unique temporary cart ID for non-logged-in users
+// Function to generate a cart ID for non-log in users
 function generateTempCartID()
 {
     return uniqid('temp_cart_id' . rand(), true); // Generate a unique temporary cart ID with a random prefix

@@ -120,20 +120,22 @@ session_start();
 
                     <form action="add_to _cart_code.php" class="d-flex" method="post">
 
-                        <div class="col-lg-5 pb-5">
+                        <input type="hidden" name="product_id_fetch" value="<?php echo $fetch_product_detail['p_id'] ?>" id="">
+
+                        <div class="col-lg-6 pb-5" style="width: 500px;">
                             <div id="product-carousel" class="carousel slide" data-ride="carousel">
                                 <div class="carousel-inner border">
                                     <div class="carousel-item active text-center">
-                                        <img class="" style="width: 300px; height: 400px;" src="Pimages/<?php echo $fetch_product_detail['p_image'] ?> " alt="Image">
+                                        <img class="" style="width: 350px; height: 400px;" src="Pimages/<?php echo $fetch_product_detail['p_image'] ?> " alt="Image">
                                     </div>
                                     <div class="carousel-item text-center">
-                                        <img class="" style="width: 300px; height: 400px;" src="Pimages/<?php echo $fetch_product_detail['p_image'] ?> " alt="Image">
+                                        <img class="" style="width: 350px; height: 400px;" src="Pimages/<?php echo $fetch_product_detail['p_image'] ?> " alt="Image">
                                     </div>
                                     <div class="carousel-item text-center">
-                                        <img class="" style="width: 300px; height: 400px;" src="Pimages/<?php echo $fetch_product_detail['p_image'] ?> " alt="Image">
+                                        <img class="" style="width: 350px; height: 400px;" src="Pimages/<?php echo $fetch_product_detail['p_image'] ?> " alt="Image">
                                     </div>
                                     <div class="carousel-item text-center">
-                                        <img class="" style="width: 300px; height: 400px;" src="Pimages/<?php echo $fetch_product_detail['p_image'] ?> " alt="Image">
+                                        <img class="" style="width: 350px; height: 400px;" src="Pimages/<?php echo $fetch_product_detail['p_image'] ?> " alt="Image">
                                     </div>
                                 </div>
                                 <a class="carousel-control-prev" href="#product-carousel" data-slide="prev">
@@ -145,7 +147,7 @@ session_start();
                             </div>
                         </div>
 
-                        <div class="col-lg-7 pb-5">
+                        <div class="col-lg-6 pb-5" style="width: 500px;">
                             <h2 class="font-weight-semi-bold pb-2"> <?php echo $fetch_product_detail['p_name'] ?> </h2>
                             <!-- <div class="d-flex mb-3">
                                 <div class="text-primary mr-2">
@@ -162,7 +164,7 @@ session_start();
 
                             <div class="col-lg-4 d-flex align-items-center mb-4 pt-2">
 
-                                <!--Modal Launch Button-->
+                                <!--Modal Feedback Button-->
                                 <button type="button" class="btn btn-sm btn-primary openmodal" data-toggle="modal" data-target="#myModal2">FeedBack Form</button>
 
                             </div>
@@ -351,7 +353,6 @@ session_start();
                 <!-- Modal Header-->
                 <div class="modal-header">
                     <h3>Feedback Request</h3>
-
                     <!--Close/Cross Button-->
                     <button type="button" class="close" data-dismiss="modal" style="color: white;">&times;</button>
                 </div>
@@ -367,23 +368,23 @@ session_start();
 
                 <!-- Radio Buttons for Rating-->
                 <div style="display: flex; align-items: baseline;" class="form-check mb-4">
-                    <input name="feedback" type="radio" id="Very Good" style="display: block;">
+                    <input name="feedback" type="radio" id="Very Good" name="" value="Very Good" style="display: block;">
                     <label class="" style="margin: 0 10px;" for="Very Good">Very good</label>
                 </div>
                 <div style="display: flex; align-items: baseline;" class="form-check mb-4 d-flex">
-                    <input name="feedback" type="radio" id="Good" style="display: block;">
+                    <input name="feedback" type="radio" id="Good" name="" value=" Good" style="display: block;">
                     <label class="" style="margin: 0 10px;" for="Good">Good</label>
                 </div>
                 <div style="display: flex; align-items: baseline;" class="form-check mb-4 d-flex">
-                    <input name="feedback" type="radio" id="Normal" style="display: block;">
+                    <input name="feedback" type="radio" id="Normal" name="" value="Normal" style="display: block;">
                     <label class="" style="margin: 0 10px;" for="Normal">Normal</label>
                 </div>
                 <div style="display: flex; align-items: baseline;" class="form-check mb-4 d-flex">
-                    <input name="feedback" type="radio" id="Bad" style="display: block;">
+                    <input name="feedback" type="radio" id="Bad" name="" value="Bad" style="display: block;">
                     <label class="" style="margin: 0 10px;" for="Bad">Bad</label>
                 </div>
                 <div style="display: flex; align-items: baseline;" class="form-check mb-4 d-flex">
-                    <input name="feedback" type="radio" id="Very Bad" style="display: block;">
+                    <input name="feedback" type="radio" id="Very Bad" name="" value="Very Bad" style="display: block;">
                     <label class="" style="margin: 0 10px;" for="Very Bad">Very Bad</label>
                 </div>
 
@@ -391,19 +392,61 @@ session_start();
                 <div class="text-center">
                     <h4>What could we improve?</h4>
                 </div>
-                <textarea type="textarea" placeholder="Your Message" rows="6"></textarea>
-
+                <textarea type="textarea" placeholder="Your Message" name="FeedBackFormTextarea" rows="6"></textarea>
 
                 <!-- Modal Footer-->
                 <div class="modal-footer">
 
-                    <input type="submit" class="btn btn-primary " name="" value="Send" id="">
+                    <input type="submit" class="btn btn-primary " name="btnFeedBackForm" value="Send" id="">
                     <a href="" class="btn btn-outline-primary" data-dismiss="modal">Cancel</a>
+
                 </div>
 
             </div>
 
         </form>
+
+        <!-- feedback form data insert  -->
+        <?php
+        include 'Connection.php';
+
+        $user_id =  $_SESSION['user_id'];
+
+        if (isset($_POST['btnFeedBackForm']) && isset($_SESSION['user_id'])) {
+
+            $feedback_one = $_POST['feedback'];
+
+            $feedback_text = $_POST['FeedBackFormTextarea'];
+
+            $product_id_fetch = $_GET['BeautyPRODUCTid'];
+
+            $insert_feedback = mysqli_query($con, " INSERT INTO `feedbackform`( `rating`, `review`, `u_id`, `p_id`) VALUES ( '$feedback_one','$feedback_text','$user_id','$product_id_fetch') ");
+
+            if ($insert_feedback) {
+        ?>
+                <script>
+                    alert('Feedback submitted successfully!')
+                </script>
+            <?php
+            } else {
+            ?>
+                <script>
+                    alert('Failed to submit feedback. Please try again later.')
+                </script>
+            <?php
+            }
+        } elseif (isset($_POST['btnFeedBackForm']) && !isset($_SESSION['user_id'])) {
+            ?>
+
+            <script>
+                alert('Please log in to submit feedback.')
+            </script>
+
+        <?php
+        }
+
+        ?>
+
     </div>
 
 </div>
