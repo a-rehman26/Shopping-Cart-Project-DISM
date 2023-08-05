@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 02, 2023 at 10:16 PM
+-- Generation Time: Aug 05, 2023 at 09:24 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -72,6 +72,27 @@ INSERT INTO `contact` (`id`, `name`, `email`, `subject`, `message`) VALUES
 (3, 'Hamza Afridi', 'hamza12@gmail.com', 'okey ', 'message check'),
 (5, 'Abdul Asim', 'asim12@gmail.com', 'hello world', 'hello world hello world hello world'),
 (6, 'Laiba', 'laiba78@gmail.com', 'hello world', 'hello world testing hello world testing');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `feedbackform`
+--
+
+CREATE TABLE `feedbackform` (
+  `f_id` int(255) NOT NULL,
+  `rating` varchar(255) NOT NULL,
+  `review` varchar(255) NOT NULL,
+  `u_id` varchar(255) NOT NULL,
+  `p_id` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `feedbackform`
+--
+
+INSERT INTO `feedbackform` (`f_id`, `rating`, `review`, `u_id`, `p_id`) VALUES
+(5, 'Very Good', 'good perfume  ( testing feedback form )', '1', '13');
 
 -- --------------------------------------------------------
 
@@ -179,11 +200,18 @@ ALTER TABLE `contact`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `feedbackform`
+--
+ALTER TABLE `feedbackform`
+  ADD PRIMARY KEY (`f_id`);
+
+--
 -- Indexes for table `product`
 --
 ALTER TABLE `product`
   ADD PRIMARY KEY (`p_id`),
   ADD KEY `p_cat` (`p_cat`);
+ALTER TABLE `product` ADD FULLTEXT KEY `p_name` (`p_name`);
 
 --
 -- Indexes for table `p_category`
@@ -205,13 +233,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
+  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
 
 --
 -- AUTO_INCREMENT for table `contact`
 --
 ALTER TABLE `contact`
   MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `feedbackform`
+--
+ALTER TABLE `feedbackform`
+  MODIFY `f_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `product`

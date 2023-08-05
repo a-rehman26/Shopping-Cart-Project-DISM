@@ -101,6 +101,12 @@ session_start();
                         </div>
 
 
+                        <input type="hidden" value="<?php echo $row_product['p_id'] ?>" name="cart_ID" id="">
+                        <input type="hidden" name="cart_pImage" value="<?php echo $row_product['p_image'] ?>" id="">
+                        <input type="hidden" name="cart_pName" value="<?php echo $row_product['p_name'] ?>" id="">
+                        <input type="hidden" name="cart_pPrice" value="<?php echo $row_product['p_price'] ?>" id="">
+
+
                     </form>
 
                 <?php
@@ -109,7 +115,9 @@ session_start();
             if ($noResult) {
                 echo
                 "
-            No Result
+            No Result:
+            
+            &nbsp
             
             <p> 
             
