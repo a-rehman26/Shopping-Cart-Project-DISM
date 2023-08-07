@@ -4,10 +4,11 @@ session_start();
 
 include 'Connection.php';
 
-// Function to generate a cart ID for non-log in users
+// generate user id for non login user 
+
 function generateTempCartID()
 {
-    return uniqid('temp_cart_id' . rand(), true); // Generate a unique temporary cart ID with a random prefix
+    return uniqid('temp_cart_id' . rand(), true);
 }
 
 if (isset($_POST['addToCart'])) {

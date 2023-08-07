@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 05, 2023 at 09:24 PM
+-- Generation Time: Aug 07, 2023 at 10:05 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -31,6 +31,7 @@ CREATE TABLE `cart` (
   `cart_id` int(11) NOT NULL,
   `cart_name` varchar(255) NOT NULL,
   `cart_price` decimal(10,2) NOT NULL,
+  `cart_quantity` varchar(255) NOT NULL DEFAULT '1',
   `cart_image` varchar(255) NOT NULL,
   `product_id` int(11) NOT NULL,
   `user_id` int(11) DEFAULT NULL
@@ -40,13 +41,13 @@ CREATE TABLE `cart` (
 -- Dumping data for table `cart`
 --
 
-INSERT INTO `cart` (`cart_id`, `cart_name`, `cart_price`, `cart_image`, `product_id`, `user_id`) VALUES
-(61, 'Wallet', 100.00, 'wallet image 02.jpg', 13, 1),
-(62, 'Makeup Box', 130.00, 'eye lashes box image 01.webp', 17, 1),
-(70, 'Perfume', 200.00, 'perfume image 01.webp', 19, 2),
-(72, 'School Bag', 25.00, 'bag image 01.jpg', 1, 2),
-(74, 'Perfume', 200.00, 'perfume image 01.webp', 19, 5),
-(75, 'Doll', 55.00, 'doll image 03.webp', 15, 5);
+INSERT INTO `cart` (`cart_id`, `cart_name`, `cart_price`, `cart_quantity`, `cart_image`, `product_id`, `user_id`) VALUES
+(70, 'Perfume', 200.00, '1', 'perfume image 01.webp', 19, 2),
+(72, 'School Bag', 25.00, '1', 'bag image 01.jpg', 1, 2),
+(74, 'Perfume', 200.00, '1', 'perfume image 01.webp', 19, 5),
+(75, 'Doll', 55.00, '1', 'doll image 03.webp', 15, 5),
+(87, 'Wallet', 100.00, '1', 'wallet image 02.jpg', 13, 1),
+(92, 'Hand Bag', 30.00, '1', 'hand bag women 02.jpg', 2, 1);
 
 -- --------------------------------------------------------
 
@@ -233,7 +234,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
+  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=106;
 
 --
 -- AUTO_INCREMENT for table `contact`
