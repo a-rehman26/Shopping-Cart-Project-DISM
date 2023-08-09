@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 07, 2023 at 10:05 PM
+-- Generation Time: Aug 09, 2023 at 10:13 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -20,6 +20,28 @@ SET time_zone = "+00:00";
 --
 -- Database: `project`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `admin&employee`
+--
+
+CREATE TABLE `admin&employee` (
+  `ID` int(255) NOT NULL,
+  `userName` varchar(255) NOT NULL,
+  `Email` varchar(255) NOT NULL,
+  `Password` varchar(255) NOT NULL,
+  `Role` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `admin&employee`
+--
+
+INSERT INTO `admin&employee` (`ID`, `userName`, `Email`, `Password`, `Role`) VALUES
+(1, 'Hamza', 'hamza123@gmail.com', 'hamza123', 'Admin'),
+(2, 'Talha', 'talha123@gmail.com', 'talha123', 'Employee');
 
 -- --------------------------------------------------------
 
@@ -46,8 +68,27 @@ INSERT INTO `cart` (`cart_id`, `cart_name`, `cart_price`, `cart_quantity`, `cart
 (72, 'School Bag', 25.00, '1', 'bag image 01.jpg', 1, 2),
 (74, 'Perfume', 200.00, '1', 'perfume image 01.webp', 19, 5),
 (75, 'Doll', 55.00, '1', 'doll image 03.webp', 15, 5),
-(87, 'Wallet', 100.00, '1', 'wallet image 02.jpg', 13, 1),
+(87, 'Wallet', 100.00, '3', 'wallet image 02.jpg', 13, 1),
 (92, 'Hand Bag', 30.00, '1', 'hand bag women 02.jpg', 2, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `checkout`
+--
+
+CREATE TABLE `checkout` (
+  `checkout_id` int(255) NOT NULL,
+  `checkout_Fname` varchar(255) NOT NULL,
+  `checkout_Lname` varchar(255) NOT NULL,
+  `checkout_email` varchar(255) NOT NULL,
+  `checkout_mobile` varchar(255) NOT NULL,
+  `checkout_address1` varchar(255) NOT NULL,
+  `checkout_address2` varchar(255) NOT NULL,
+  `checkout_city` varchar(255) NOT NULL,
+  `checkout_zip_code` varchar(255) NOT NULL,
+  `checkout_payment_method` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -188,11 +229,23 @@ INSERT INTO `users` (`u_id`, `u_name`, `u_email`, `u_pass`, `u_Cpass`, `u_number
 --
 
 --
+-- Indexes for table `admin&employee`
+--
+ALTER TABLE `admin&employee`
+  ADD PRIMARY KEY (`ID`);
+
+--
 -- Indexes for table `cart`
 --
 ALTER TABLE `cart`
   ADD PRIMARY KEY (`cart_id`),
   ADD KEY `product_id` (`product_id`);
+
+--
+-- Indexes for table `checkout`
+--
+ALTER TABLE `checkout`
+  ADD PRIMARY KEY (`checkout_id`);
 
 --
 -- Indexes for table `contact`
@@ -231,10 +284,22 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `admin&employee`
+--
+ALTER TABLE `admin&employee`
+  MODIFY `ID` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
   MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=106;
+
+--
+-- AUTO_INCREMENT for table `checkout`
+--
+ALTER TABLE `checkout`
+  MODIFY `checkout_id` int(255) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `contact`

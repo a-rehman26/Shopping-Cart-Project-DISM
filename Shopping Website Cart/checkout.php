@@ -1,9 +1,5 @@
 <?php
-
-// Start the session
 session_start();
-
-$cart_items = $_SESSION['cart_items'];
 
 ?>
 
@@ -58,208 +54,137 @@ $cart_items = $_SESSION['cart_items'];
 
     <!-- Checkout Start -->
     <div class="container-fluid pt-5">
-        <div class="row px-xl-5">
-            <div class="col-lg-8">
-                <div class="mb-4">
-                    <h4 class="font-weight-semi-bold mb-4">Billing Address</h4>
-                    <div class="row">
-                        <div class="col-md-6 form-group">
-                            <label>First Name</label>
-                            <input class="form-control" type="text" placeholder="John">
-                        </div>
-                        <div class="col-md-6 form-group">
-                            <label>Last Name</label>
-                            <input class="form-control" type="text" placeholder="Doe">
-                        </div>
-                        <div class="col-md-6 form-group">
-                            <label>E-mail</label>
-                            <input class="form-control" type="text" placeholder="example@email.com">
-                        </div>
-                        <div class="col-md-6 form-group">
-                            <label>Mobile No</label>
-                            <input class="form-control" type="text" placeholder="+123 456 789">
-                        </div>
-                        <div class="col-md-6 form-group">
-                            <label>Address Line 1</label>
-                            <input class="form-control" type="text" placeholder="123 Street">
-                        </div>
-                        <div class="col-md-6 form-group">
-                            <label>Address Line 2</label>
-                            <input class="form-control" type="text" placeholder="123 Street">
-                        </div>
-                        <!-- <div class="col-md-6 form-group">
-                            <label>Country</label>
-                            <select class="custom-select">
-                                <option selected>United States</option>
-                                <option>Afghanistan</option>
-                                <option>Albania</option>
-                                <option>Algeria</option>
-                            </select>
-                        </div> -->
-                        <div class="col-md-6 form-group">
-                            <label>City</label>
-                            <input class="form-control" type="text" placeholder="New York">
-                        </div>
-                        <!-- <div class="col-md-6 form-group">
-                            <label>State</label>
-                            <input class="form-control" type="text" placeholder="New York">
-                        </div> -->
-                        <div class="col-md-6 form-group">
-                            <label>ZIP Code</label>
-                            <input class="form-control" type="text" placeholder="123">
-                        </div>
+        <form action="" method="post">
+            <div class="row px-xl-5">
+                <div class="col-lg-8">
+                    <div class="mb-4">
+                        <h4 class="font-weight-semi-bold mb-4">Billing Address</h4>
+                        <div class="row">
 
+                            <div class="col-md-6 form-group">
+                                <label>First Name</label>
+                                <input class="form-control" type="text" placeholder="John" name="fName">
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label>Last Name</label>
+                                <input class="form-control" type="text" placeholder="Doe" name="lName">
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label>E-mail</label>
+                                <input class="form-control" type="text" placeholder="example@email.com" name="email">
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label>Mobile No</label>
+                                <input class="form-control" type="text" placeholder="+123 456 789" name="mobile">
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label>Address Line 1</label>
+                                <input class="form-control" type="text" placeholder="123 Street" name="address01">
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label>Address Line 2</label>
+                                <input class="form-control" type="text" placeholder="123 Street" name="address02">
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label>City</label>
+                                <input class="form-control" type="text" placeholder="New York" name="city">
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label>ZIP Code</label>
+                                <input class="form-control" type="text" placeholder="123" name="zipCode">
+                            </div>
+
+                        </div>
                     </div>
                 </div>
-                <!-- <div class="collapse mb-4" id="shipping-address">
-                    <h4 class="font-weight-semi-bold mb-4">Shipping Address</h4>
-                    <div class="row">
-                        <div class="col-md-6 form-group">
-                            <label>First Name</label>
-                            <input class="form-control" type="text" placeholder="John">
+
+                <div class="col-lg-4">
+
+                    <div class="card border-secondary mb-5">
+                        <div class="card-header bg-secondary border-0">
+                            <h4 class="font-weight-semi-bold m-0">Orders</h4>
                         </div>
-                        <div class="col-md-6 form-group">
-                            <label>Last Name</label>
-                            <input class="form-control" type="text" placeholder="Doe">
-                        </div>
-                        <div class="col-md-6 form-group">
-                            <label>E-mail</label>
-                            <input class="form-control" type="text" placeholder="example@email.com">
-                        </div>
-                        <div class="col-md-6 form-group">
-                            <label>Mobile No</label>
-                            <input class="form-control" type="text" placeholder="+123 456 789">
-                        </div>
-                        <div class="col-md-6 form-group">
-                            <label>Address Line 1</label>
-                            <input class="form-control" type="text" placeholder="123 Street">
-                        </div>
-                        <div class="col-md-6 form-group">
-                            <label>Address Line 2</label>
-                            <input class="form-control" type="text" placeholder="123 Street">
-                        </div>
-                        <div class="col-md-6 form-group">
-                            <label>Country</label>
-                            <select class="custom-select">
-                                <option selected>United States</option>
-                                <option>Afghanistan</option>
-                                <option>Albania</option>
-                                <option>Algeria</option>
-                            </select>
-                        </div>
-                        <div class="col-md-6 form-group">
-                            <label>City</label>
-                            <input class="form-control" type="text" placeholder="New York">
-                        </div>
-                        <div class="col-md-6 form-group">
-                            <label>State</label>
-                            <input class="form-control" type="text" placeholder="New York">
-                        </div>
-                        <div class="col-md-6 form-group">
-                            <label>ZIP Code</label>
-                            <input class="form-control" type="text" placeholder="123">
-                        </div>
-                    </div>
-                </div> -->
-            </div>
 
-            <div class="col-lg-4">
+                        <?php
+                        include 'Connection.php';
 
-                <div class="card border-secondary mb-5">
-                    <div class="card-header bg-secondary border-0">
-                        <h4 class="font-weight-semi-bold m-0">Orders</h4>
-                    </div>
+                        $subTotal = 0; // Initialize subtotal variable
 
-                    <?php
-                    include 'Connection.php';
+                        $user_id_fetch = $_SESSION['user_id'];
 
-                    $user_id_fetch = $_SESSION['user_id'];
+                        if (isset($_SESSION['user_id'])) {
 
-                    if (isset($_SESSION['user_id'])) {
+                            $select_cart_product = mysqli_query($con, " SELECT * FROM `cart` WHERE user_id = '$user_id_fetch'  ");
 
-                        $select_cart_product = mysqli_query($con, " SELECT * FROM `cart` WHERE user_id = '$user_id_fetch'  ");
+                            while ($row_cart_product = mysqli_fetch_assoc($select_cart_product)) {
 
-                        while ($row_cart_product = mysqli_fetch_assoc($select_cart_product)) {
+                                $productTotal = $row_cart_product['cart_price'] * $row_cart_product['cart_quantity'];
+                                $subTotal += $productTotal;
 
-                    ?>
+                        ?>
 
-                            <form action="" method="post" style="width: auto; height: 50px;">
+                                <form action="" method="post" style="width: auto; height: 50px;">
 
-                                <div class="card-body">
+                                    <div class="card-body">
 
-                                    <div class="d-flex justify-content-between">
-                                        <h6> <?php echo $row_cart_product['cart_name'] ?> </h6>
-                                        <p>RS: <?php echo $row_cart_product['cart_price'] ?> </p>
+                                        <div class="d-flex justify-content-between">
+                                            <h6> <?php echo $row_cart_product['cart_name'] ?> [ <?php echo $row_cart_product['cart_quantity'] ?> ] </h6>
+                                            <p>RS: <?php echo $row_cart_product['cart_price'] ?> </p>
+                                        </div>
 
-                                        <input type="hidden" class="cart_checkout_price" value="<?php echo $row_cart_product['cart_price'] ?>" name="" id="">
                                     </div>
 
-                                </div>
+                                </form>
 
-                            </form>
+                        <?php
 
-                    <?php
-
+                            }
                         }
-                    }
 
-                    ?>
+                        ?>
 
-                    <hr class="mt-3">
+                        <hr class="mt-3">
 
-                    <!-- Calculate and display the subtotal amount -->
-
-                    <?php
-                    $sub_total = 0;
-                    foreach ($cart_items as $item) {
-                        $sub_total += $item['cart_total_price'];
-                    }
-                    ?>
-
-                    <div class="card-body border-secondary bg-transparent">
-                        <div class="d-flex justify-content-between">
-                            <h5 class="font-weight-medium">Subtotal Amount</h5>
-                            <h6 class="font-weight-medium">RS: <?php echo $sub_total; ?></h6>
-                        </div>
-
-                        <div class="d-flex justify-content-between mt-2">
-                            <!-- <h6 class="font-weight-medium">Shipping</h6> -->
-                            <!-- <h6 class="font-weight-medium">RS: 0</h6> -->
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="card border-secondary mb-5">
-                    <div class="card-header bg-secondary border-0">
-                        <h4 class="font-weight-semi-bold m-0">Payment</h4>
-                    </div>
-                    <div class="card-body">
-                        <div class="form-group">
-                            <div class="custom-control custom-radio">
-                                <input type="radio" class="custom-control-input" name="payment" id="paypal">
-                                <label class="custom-control-label" for="paypal">Paypal</label>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="custom-control custom-radio">
-                                <input type="radio" class="custom-control-input" name="payment" id="directcheck">
-                                <label class="custom-control-label" for="directcheck">Direct Check</label>
-                            </div>
-                        </div>
-                        <div class="">
-                            <div class="custom-control custom-radio">
-                                <input type="radio" class="custom-control-input" name="payment" id="banktransfer">
-                                <label class="custom-control-label" for="banktransfer">Bank Transfer</label>
+                        <div class="card-body border-secondary bg-transparent">
+                            <div class="d-flex justify-content-between">
+                                <h5 class="font-weight-medium">Subtotal Amount</h5>
+                                <h6 class="font-weight-medium">RS: <?php echo $subTotal; ?></h6>
                             </div>
                         </div>
                     </div>
-                    <div class="card-footer border-secondary bg-transparent">
-                        <button class="btn btn-lg btn-block btn-primary font-weight-bold my-3 py-3">Place Order</button>
+
+
+                    <div class="card border-secondary mb-5">
+                        <div class="card-header bg-secondary border-0">
+                            <h4 class="font-weight-semi-bold m-0">Payment</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" class="custom-control-input" value="Cash_On_Delivery" name="CashOnDelivery" id="CashOnDelivery">
+                                    <label class="custom-control-label" for="CashOnDelivery">Cash On Delivery</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" class="custom-control-input" value="Check" name="Check" id="Check">
+                                    <label class="custom-control-label" for="Check">Check</label>
+                                </div>
+                            </div>
+                            <div class="">
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" class="custom-control-input" value="Bank_Transfer" name="BankTransfer" id="BankTransfer">
+                                    <label class="custom-control-label" for="BankTransfer">Bank Transfer</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer border-secondary bg-transparent">
+                            <input type="submit" class="btn btn-lg btn-block btn-primary font-weight-bold my-3" name="btn_order_place" id="">
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </form>
     </div>
     <!-- Checkout End -->
 
@@ -292,3 +217,22 @@ $cart_items = $_SESSION['cart_items'];
 </body>
 
 </html>
+
+<?php
+include 'Connection.php';
+
+if (isset($_POST['btn_order_place'])) {
+    $checkout_F_name = $_POST['fName'];
+    $checkout_L_name = $_POST['lName'];
+    $checkout_email = $_POST['email'];
+    $checkout_mobile = $_POST['mobile'];
+    $checkout_address01 = $_POST['address01'];
+    $checkout_address02 = $_POST['address02'];
+    $checkout_city = $_POST['city'];
+    $checkout_zipCode = $_POST['zipCode'];
+
+    $checkout_payment_cod = $_POST['CashOnDelivery'];
+    $checkout_payment_check = $_POST['Check'];
+    $checkout_payment_check = $_POST['BankTransfer'];
+}
+?>
