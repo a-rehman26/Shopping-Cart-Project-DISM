@@ -1,3 +1,8 @@
+<?php
+session_start();
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -39,32 +44,24 @@
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
                                     </div>
-                                    <form class="user">
+
+                                    <form class="user" method="post">
+
                                         <div class="form-group">
-                                            <input type="email" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email Address...">
+                                            <input type="email" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email Address..." name="email">
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password">
+                                            <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password" name="password">
                                         </div>
-                                        <div class="form-group">
-                                            <div class="custom-control custom-checkbox small">
-                                                <input type="checkbox" class="custom-control-input" id="customCheck">
-                                                <label class="custom-control-label" for="customCheck">Remember
-                                                    Me</label>
-                                            </div>
-                                        </div>
-                                        <a href="index.html" class="btn btn-primary btn-user btn-block">
-                                            Login
-                                        </a>
+
                                         <hr>
-                                        <a href="index.html" class="btn btn-google btn-user btn-block">
-                                            <i class="fab fa-google fa-fw"></i> Login with Google
-                                        </a>
-                                        <a href="index.html" class="btn btn-facebook btn-user btn-block">
-                                            <i class="fab fa-facebook-f fa-fw"></i> Login with Facebook
-                                        </a>
+
+                                        <input type="submit" class="btn btn-primary btn-user btn-block" name="login_btn" value="Login" id="">
+
+                                        <hr>
+
                                     </form>
-                                    <hr>
+
                                     <div class="text-center">
                                         <a class="small" href="forgot-password.html">Forgot Password?</a>
                                     </div>
@@ -96,3 +93,62 @@
 </body>
 
 </html>
+
+<?php
+
+include 'Connection.php';
+
+if (isset($_POST['login_btn'])) {
+
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+
+    $select_data = mysqli_query($con, " SELECT * FROM `admin&employee` WHERE Email = '$email' ");
+
+    $data_rows = mysqli_num_rows($select_data);
+
+    if ($data_rows) {
+
+        $fetch_data = mysqli_fetch_assoc($select_data);
+
+        $email_fetch = $fetch_data['Email'];
+        $username_fetch = $fetch_data['userName'];
+        $password_fetch = $fetch_data['Password'];
+        $role_fetch = $fetch_data['Role'];
+
+        $_SESSION['loginRole'] = $role_fetch;
+        $_SESSION['loginUserName'] = $username_fetch;
+
+
+        if ($password == $password_fetch && $email == $email_fetch) {
+?>
+
+            <script>
+                alert("Welcome")
+
+                location.replace('index.php');
+
+                exit();
+            </script>
+
+        <?php
+        } else {
+        ?>
+
+            <script>
+                alert("Password incorrect")
+            </script>
+
+        <?php
+        }
+    } else {
+        ?>
+
+        <script>
+            alert("Email incorrect")
+        </script>
+
+<?php
+    }
+}
+?>
