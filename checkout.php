@@ -71,7 +71,7 @@ session_start();
                             </div>
                             <div class="col-md-6 form-group">
                                 <label>E-mail</label>
-                                <input class="form-control" type="text" placeholder="example@email.com" name="email">
+                                <input class="form-control" type="email" placeholder="example@email.com" name="email">
                             </div>
                             <div class="col-md-6 form-group">
                                 <label>Mobile No</label>
@@ -161,19 +161,19 @@ session_start();
                         <div class="card-body">
                             <div class="form-group">
                                 <div class="custom-control custom-radio">
-                                    <input type="radio" class="custom-control-input" value="Cash_On_Delivery" name="CashOnDelivery" id="CashOnDelivery">
+                                    <input type="radio" class="custom-control-input" value="Cash_On_Delivery" name="checkout_payment_inputs_radio" id="CashOnDelivery">
                                     <label class="custom-control-label" for="CashOnDelivery">Cash On Delivery</label>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="custom-control custom-radio">
-                                    <input type="radio" class="custom-control-input" value="Check" name="Check" id="Check">
+                                    <input type="radio" class="custom-control-input" value="Check" name="checkout_payment_inputs_radio" id="Check">
                                     <label class="custom-control-label" for="Check">Check</label>
                                 </div>
                             </div>
                             <div class="">
                                 <div class="custom-control custom-radio">
-                                    <input type="radio" class="custom-control-input" value="Bank_Transfer" name="BankTransfer" id="BankTransfer">
+                                    <input type="radio" class="custom-control-input" value="Bank_Transfer" name="checkout_payment_inputs_radio" id="BankTransfer">
                                     <label class="custom-control-label" for="BankTransfer">Bank Transfer</label>
                                 </div>
                             </div>
@@ -222,6 +222,7 @@ session_start();
 include 'Connection.php';
 
 if (isset($_POST['btn_order_place'])) {
+
     $checkout_F_name = $_POST['fName'];
     $checkout_L_name = $_POST['lName'];
     $checkout_email = $_POST['email'];
@@ -231,8 +232,29 @@ if (isset($_POST['btn_order_place'])) {
     $checkout_city = $_POST['city'];
     $checkout_zipCode = $_POST['zipCode'];
 
-    $checkout_payment_cod = $_POST['CashOnDelivery'];
-    $checkout_payment_check = $_POST['Check'];
-    $checkout_payment_check = $_POST['BankTransfer'];
+    $checkout_payment = $_POST['checkout_payment_inputs_radio'];
+
+    $insert_checkout_form = mysqli_query($con, " INSERT INTO `checkout`( `checkout_Fname`, `checkout_Lname`, `checkout_email`, `checkout_mobile`, `checkout_address1`, `checkout_address2`, `checkout_city`, `checkout_zip_code`, `checkout_payment_method`) VALUES 
+    (
+        '$checkout_F_name','$checkout_L_name','$checkout_email','$checkout_mobile','$checkout_address01','$checkout_address02','$checkout_city','$checkout_zipCode','$checkout_payment' ) ");
+
+    if ($insert_checkout_form) {
+?>
+
+        <script>
+            alert("Done")
+        </script>
+
+    <?php
+    } else {
+    ?>
+
+        <script>
+            alert("Not Done")
+        </script>
+
+<?php
+    }
 }
+
 ?>

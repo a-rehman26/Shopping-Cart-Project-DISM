@@ -122,6 +122,13 @@ if (!isset($_SESSION['loginUserName'])) {
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
+                <a class="nav-link" href="index.php?Carts">
+                <i class="fa-solid fa-cart-plus"></i>
+                    <span>Carts</span></a>
+            </li>
+
+            <!-- Nav Item - Charts -->
+            <li class="nav-item">
                 <a class="nav-link" href="index.php?ContactForm">
                     <i class="fa-regular fa-address-book"></i>
                     <span>Contact Form</span></a>
@@ -309,6 +316,8 @@ if (!isset($_SESSION['loginUserName'])) {
                             include 'Users.php';
                         } else if (isset($_GET['feedBackForm'])) {
                             include 'feedBackForm.php';
+                        } else if (isset($_GET['Carts'])) {
+                            include 'Carts.php';
                         } else {
 
                             echo
