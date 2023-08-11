@@ -487,7 +487,7 @@
                                             </div>
                                             <input type="password" name="pass_login" id="input" placeholder="Password" required>
                                         </div>
-                                        <div class="pass-link"><a href="forgot.php">Forgot password?</a></div>
+                                        <div class="pass-link"><a href="user_forgot_password.php">Forgot password?</a></div>
                                         <div class="field btn">
 
                                         </div>
@@ -500,13 +500,14 @@
 
                                     <?php
 
-                                    // Check if the login form is submitted
+                                    // Check if the login form is submit
                                     if (isset($_POST['btnLogin'])) {
 
                                         $email_login = $_POST['email_login'];
                                         $pass_login = $_POST['pass_login'];
 
-                                        $email_select_login = mysqli_query($con, " SELECT * FROM `users` WHERE u_email = '$email_login' ");
+                                        // u_status = 'Active' = if user not verify email otherwise user not login 
+                                        $email_select_login = mysqli_query($con, " SELECT * FROM `users` WHERE u_email = '$email_login' AND u_status = 'Active' ");
 
                                         $email_rows = mysqli_num_rows($email_select_login);
 
@@ -531,9 +532,7 @@
 
                                                 $name_db = $data_fetch_login['u_name'];
 
-                                                // Assuming login is successful, set the user's name in a session
-                                                $_SESSION['user_name'] = $name_db; // Replace 'John Doe' with the actual user's name fetched from the database
-
+                                                $_SESSION['user_name'] = $name_db;
                                             } else {
                                             ?>
                                                 <script>
@@ -587,6 +586,14 @@
                                         $cPass = $_POST['cPass'];
                                         $mobile = $_POST['mobile'];
 
+                                        $_SESSION['otp_email'] = $email;
+
+                                        $randomBytes = random_bytes(4); // Generate 4 random bytes
+                                        $randomNumber = hexdec(bin2hex($randomBytes)); // Convert bytes to a decimal number
+                                        $min = 100000; // Minimum value (inclusive)
+                                        $max = 999999; // Maximum value (inclusive)
+                                        $token = $min + ($randomNumber % ($max - $min + 1)); // Convert to the desired range
+
                                         $otp = rand(10000, 99999);
 
                                         $select_email = mysqli_query($con, " SELECT * FROM `users` WHERE u_email = '$email' ");
@@ -604,24 +611,26 @@
                                         } else {
                                             if ($pass == $cPass) {
 
-                                                $insert_query = mysqli_query($con, " INSERT INTO `users`( `u_name`, `u_email`, `u_pass`, `u_Cpass`, `u_number`, `OTP`) VALUES ( '$name','$email','$pass','$cPass','$mobile','$otp') ");
+                                                $insert_query = mysqli_query($con, " INSERT INTO `users`( `u_name`, `u_email`, `u_pass`, `u_Cpass`, `u_number`, `OTP`, `u_token`, `u_status`) VALUES ( '$name','$email','$pass','$cPass','$mobile','$otp', '$token', 'inActive') ");
 
                                                 if ($insert_query) {
                                                     // mail otp   
 
-                                                    // $subject = "Account Activation OTP";
-                                                    // $body = "Hello: $name This is Your OTP Code
-                                                    // $otp ";
-                                                    // $sender = "OTPcode999@outlook.com";
+                                                    $subject = "Account Activation OTP";
+                                                    $body = "Hello: $name This is Your OTP Code
+                                                    $otp ";
+                                                    $sender = "OTPcode999@outlook.com";
 
 
-                                                    // if (mail($email, $sender, $body, $subject)) {
-                                                    // }
+                                                    if (mail($email, $sender, $body, $subject)) {
+                                                    }
 
                                             ?>
 
                                                     <script>
-                                                        alert("Account Created")
+                                                        alert("Account Created & Please Verify Your Account: Check Your Mail ")
+
+                                                        location.replace('otp.php');
                                                     </script>
 
                                                 <?php
