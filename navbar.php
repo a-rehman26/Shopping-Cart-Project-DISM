@@ -518,7 +518,7 @@
                                         $pass_login = $_POST['pass_login'];
 
                                         // u_status = 'Active' = if user not verify email otherwise user not login 
-                                        $email_select_login = mysqli_query($con, " SELECT * FROM `users` WHERE u_email = '$email_login' ");
+                                        $email_select_login = mysqli_query($con, " SELECT * FROM `users` WHERE u_email = '$email_login' AND u_status = 'Active' ");
 
                                         $email_rows = mysqli_num_rows($email_select_login);
 

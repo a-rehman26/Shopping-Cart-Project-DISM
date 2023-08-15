@@ -47,7 +47,7 @@ if (isset($_POST['addToCart'])) {
         <?php
     } else {
 
-        $insert_cart_product = mysqli_query($con, " INSERT INTO `cart`( `cart_name`, `cart_price`, `cart_image`, `product_id`, `user_id`) VALUES ( '$cart_p_name','$cart_p_price','$cart_p_image','$cart_p_id','$user_id') ");
+        $insert_cart_product = mysqli_query($con, " INSERT INTO `cart`( `cart_name`, `cart_price`, `cart_quantity`, `cart_image`, `product_id`, `user_id`) VALUES ( '$cart_p_name','$cart_p_price', '1', '$cart_p_image','$cart_p_id','$user_id') ");
 
         if ($insert_cart_product) {
         ?>
