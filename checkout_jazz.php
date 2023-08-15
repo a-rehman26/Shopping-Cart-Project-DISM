@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 // Include configuration file 
 include 'config.php';
 
@@ -171,7 +173,6 @@ $post_data['pp_SecureHash'] =  $pp_SecureHash;
         </div>
         <span id="success-msg" class="payment-errors"></span>
 
-
         <!-- JAZZCASH payment form -->
         <form action="<?php echo JAZZCASH_HTTP_POST_URL; ?>" method="POST" id="myCCForm">
             <div class="row justify-content-center">
@@ -181,8 +182,10 @@ $post_data['pp_SecureHash'] =  $pp_SecureHash;
                     <div class="card border-gray rounded-0">
                         <div class="card-header p-0">
                             <div class="bg-gray text-left py-2">
-                                <h5 class="pl-2"><strong>Product Name: </strong><?php echo $product_name; ?></h5>
-                                <h6 class="pl-2"><strong>Product Price: </strong> <?php echo $product_price; ?> PKR</h6>
+
+                                <!-- <h5 class="pl-2"><strong>Product Name: </strong><?php echo $product_name; ?></h5> -->
+                                <!-- <h6 class="pl-2"><strong>Product Price: </strong> <?php echo $product_price; ?> PKR</h6> -->
+
                             </div>
                         </div>
 

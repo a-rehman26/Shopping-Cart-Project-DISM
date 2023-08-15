@@ -129,6 +129,27 @@ if (!isset($_SESSION['loginUserName'])) {
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
+                <a class="nav-link" href="index.php?Checkout">
+                <i class="fa-solid fa-bag-shopping"></i>
+                    <span>Checkout</span></a>
+            </li>
+
+            <!-- Nav Item - Charts -->
+            <li class="nav-item">
+                <a class="nav-link" href="index.php?Orders">
+                <i class="fa-solid fa-cart-plus"></i>
+                    <span>Orders</span></a>
+            </li>
+
+            <!-- Nav Item - Charts -->
+            <li class="nav-item">
+                <a class="nav-link" href="index.php?OrdersItem">
+                <i class="fa-solid fa-cart-plus"></i>
+                    <span>Orders items</span></a>
+            </li>
+
+            <!-- Nav Item - Charts -->
+            <li class="nav-item">
                 <a class="nav-link" href="index.php?ContactForm">
                     <i class="fa-regular fa-address-book"></i>
                     <span>Contact Form</span></a>
@@ -318,6 +339,12 @@ if (!isset($_SESSION['loginUserName'])) {
                             include 'feedBackForm.php';
                         } else if (isset($_GET['Carts'])) {
                             include 'Carts.php';
+                        } else if (isset($_GET['Checkout'])) {
+                            include 'CheckoutData.php';
+                        } else if (isset($_GET['Orders'])) {
+                            include 'OrdersData.php';
+                        } else if (isset($_GET['OrdersItem'])) {
+                            include 'order_item.php';
                         } else {
 
                             echo

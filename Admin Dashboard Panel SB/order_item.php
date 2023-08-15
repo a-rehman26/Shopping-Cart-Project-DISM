@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>View Users Data</title>
+    <title>View Orders items Data</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -32,22 +32,18 @@
     <!-- DataTales Example -->
     <div class="card shadow mb-4  d-flex justify-content-center align-items-center">
         <div class="card-header py-3">
-            <h3 class="m-0 font-weight-bold text-dark">Users Data</h3>
+            <h3 class="m-0 font-weight-bold text-dark">Orders items Data</h3>
         </div>
         <div class="card-body">
             <div class="table-responsive">
                 <table class="text-center table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr style="color: #555; font-size: 1.2rem;">
-                            <th style="vertical-align: middle;">S ID</th>
-                            <th style="vertical-align: middle;">User Name</th>
-                            <th style="vertical-align: middle;">User Email</th>
-                            <th style="vertical-align: middle;">Password</th>
-                            <th style="vertical-align: middle;">Confirm Password</th>
-                            <th style="vertical-align: middle;">Phone Number</th>
-                            <th style="vertical-align: middle;">OTP</th>
-                            <th style="vertical-align: middle;">User Token</th>
-                            <th style="vertical-align: middle;">User Status</th>
+                            <th style="vertical-align: middle;">item ID</th>
+                            <th style="vertical-align: middle;">order_id </th>
+                            <th style="vertical-align: middle;">product_id </th>
+                            <th style="vertical-align: middle;">Quantity </th>
+                            <th style="vertical-align: middle;">price </th>
                             <th style="vertical-align: middle;" colspan="2">Action</th>
                         </tr>
                     </thead>
@@ -61,22 +57,19 @@
                         // for index counting sequence 
                         $pID = 1;
 
-                        $select_user_data = mysqli_query($con, " SELECT * FROM `users` ");
+                        $select_order_item_data = mysqli_query($con, " SELECT * FROM `order_items` ");
 
-                        while ($fetch_user_data = mysqli_fetch_assoc($select_user_data)) {
+                        while ($fetch_order_item_data = mysqli_fetch_assoc($select_order_item_data)) {
 
                         ?>
 
                             <tr>
-                                <td style="vertical-align: middle;"> <?php echo $pID++ ?></td>
-                                <td style="vertical-align: middle;"> <?php echo $fetch_user_data['u_name'] ?></td>
-                                <td style="vertical-align: middle;"> <?php echo $fetch_user_data['u_email'] ?></td>
-                                <td style="vertical-align: middle;"> <?php echo $fetch_user_data['u_pass'] ?></td>
-                                <td style="vertical-align: middle;"> <?php echo $fetch_user_data['u_Cpass'] ?></td>
-                                <td style="vertical-align: middle;"> <?php echo $fetch_user_data['u_number'] ?></td>
-                                <td style="vertical-align: middle;"> <?php echo $fetch_user_data['OTP'] ?></td>
-                                <td style="vertical-align: middle;"> <?php echo $fetch_user_data['u_token'] ?></td>
-                                <td style="vertical-align: middle;"> <?php echo $fetch_user_data['u_status'] ?></td>
+                                <!-- <td style="vertical-align: middle;"> <?php echo $pID++ ?></td> -->
+                                <td style="vertical-align: middle;"> <?php echo $fetch_order_item_data['item_id'] ?></td>
+                                <td style="vertical-align: middle;"> <?php echo $fetch_order_item_data['order_id'] ?></td>
+                                <td style="vertical-align: middle;"> <?php echo $fetch_order_item_data['product_id'] ?></td>
+                                <td style="vertical-align: middle;"> <?php echo $fetch_order_item_data['quantity'] ?></td>
+                                <td style="vertical-align: middle;"> <?php echo $fetch_order_item_data['price'] ?></td>
                                 <td style="vertical-align: middle;"> <a href="#" title="Edit" style="padding: 20px;"><i class="fa-solid fa-pen-to-square"></i></a> </td>
                                 <td style="vertical-align: middle;"> <a href="#" title="Remove" style="padding: 20px;"><i class="fa-solid fa-trash"></i></a> </td>
                             </tr>

@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>View Users Data</title>
+    <title>View Checkout Data</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -32,22 +32,24 @@
     <!-- DataTales Example -->
     <div class="card shadow mb-4  d-flex justify-content-center align-items-center">
         <div class="card-header py-3">
-            <h3 class="m-0 font-weight-bold text-dark">Users Data</h3>
+            <h3 class="m-0 font-weight-bold text-dark">Checkout Data</h3>
         </div>
         <div class="card-body">
             <div class="table-responsive">
                 <table class="text-center table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
-                        <tr style="color: #555; font-size: 1.2rem;">
-                            <th style="vertical-align: middle;">S ID</th>
-                            <th style="vertical-align: middle;">User Name</th>
-                            <th style="vertical-align: middle;">User Email</th>
-                            <th style="vertical-align: middle;">Password</th>
-                            <th style="vertical-align: middle;">Confirm Password</th>
-                            <th style="vertical-align: middle;">Phone Number</th>
-                            <th style="vertical-align: middle;">OTP</th>
-                            <th style="vertical-align: middle;">User Token</th>
-                            <th style="vertical-align: middle;">User Status</th>
+                        <tr style="color: #555; font-size: 0.8rem;">
+                            <th style="vertical-align: middle;">Checkout ID</th>
+                            <th style="vertical-align: middle;">User ID</th>
+                            <th style="vertical-align: middle;">Checkout FName</th>
+                            <th style="vertical-align: middle;">Checkout LName</th>
+                            <th style="vertical-align: middle;">Checkout Email</th>
+                            <th style="vertical-align: middle;">Checkout Mobile</th>
+                            <th style="vertical-align: middle;">Checkout Address 01</th>
+                            <th style="vertical-align: middle;">Checkout Address 02</th>
+                            <th style="vertical-align: middle;">Checkout City</th>
+                            <th style="vertical-align: middle;">Checkout ZipCode</th>
+                            <th style="vertical-align: middle;">Checkout Payment Method</th>
                             <th style="vertical-align: middle;" colspan="2">Action</th>
                         </tr>
                     </thead>
@@ -61,22 +63,25 @@
                         // for index counting sequence 
                         $pID = 1;
 
-                        $select_user_data = mysqli_query($con, " SELECT * FROM `users` ");
+                        $select_checkout_data = mysqli_query($con, " SELECT * FROM `checkout` ");
 
-                        while ($fetch_user_data = mysqli_fetch_assoc($select_user_data)) {
+                        while ($fetch_checkout_data = mysqli_fetch_assoc($select_checkout_data)) {
 
                         ?>
 
-                            <tr>
-                                <td style="vertical-align: middle;"> <?php echo $pID++ ?></td>
-                                <td style="vertical-align: middle;"> <?php echo $fetch_user_data['u_name'] ?></td>
-                                <td style="vertical-align: middle;"> <?php echo $fetch_user_data['u_email'] ?></td>
-                                <td style="vertical-align: middle;"> <?php echo $fetch_user_data['u_pass'] ?></td>
-                                <td style="vertical-align: middle;"> <?php echo $fetch_user_data['u_Cpass'] ?></td>
-                                <td style="vertical-align: middle;"> <?php echo $fetch_user_data['u_number'] ?></td>
-                                <td style="vertical-align: middle;"> <?php echo $fetch_user_data['OTP'] ?></td>
-                                <td style="vertical-align: middle;"> <?php echo $fetch_user_data['u_token'] ?></td>
-                                <td style="vertical-align: middle;"> <?php echo $fetch_user_data['u_status'] ?></td>
+                            <tr style="color: #555; font-size: 0.8rem;">
+                                <!-- <td style="vertical-align: middle;"> <?php echo $pID++ ?></td> -->
+                                <td style="vertical-align: middle;"> <?php echo $fetch_checkout_data['checkout_id'] ?></td>
+                                <td style="vertical-align: middle;"> <?php echo $fetch_checkout_data['user_id'] ?></td>
+                                <td style="vertical-align: middle;"> <?php echo $fetch_checkout_data['checkout_Fname'] ?></td>
+                                <td style="vertical-align: middle;"> <?php echo $fetch_checkout_data['checkout_Lname'] ?></td>
+                                <td style="vertical-align: middle;"> <?php echo $fetch_checkout_data['checkout_email'] ?></td>
+                                <td style="vertical-align: middle;"> <?php echo $fetch_checkout_data['checkout_mobile'] ?></td>
+                                <td style="vertical-align: middle;"> <?php echo $fetch_checkout_data['checkout_address1'] ?></td>
+                                <td style="vertical-align: middle;"> <?php echo $fetch_checkout_data['checkout_address2'] ?></td>
+                                <td style="vertical-align: middle;"> <?php echo $fetch_checkout_data['checkout_city'] ?></td>
+                                <td style="vertical-align: middle;"> <?php echo $fetch_checkout_data['checkout_zip_code'] ?></td>
+                                <td style="vertical-align: middle;"> <?php echo $fetch_checkout_data['checkout_payment_method'] ?></td>
                                 <td style="vertical-align: middle;"> <a href="#" title="Edit" style="padding: 20px;"><i class="fa-solid fa-pen-to-square"></i></a> </td>
                                 <td style="vertical-align: middle;"> <a href="#" title="Remove" style="padding: 20px;"><i class="fa-solid fa-trash"></i></a> </td>
                             </tr>
