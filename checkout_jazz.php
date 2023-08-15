@@ -6,6 +6,8 @@ include 'config.php';
 // Include database connection file 
 include 'Connection.php';
 
+include 'navbar2.php';
+
 ?>
 
 <!DOCTYPE html>
@@ -34,9 +36,7 @@ include 'Connection.php';
 </head>
 
 <body>
-    <?php
-    include  'navbar2.php';
-    ?>
+
 </body>
 
 </html>
@@ -168,7 +168,6 @@ $post_data['pp_SecureHash'] =  $pp_SecureHash;
 <section class="showcase">
     <div class="container">
         <div class="pb-2 mt-4 mb-2 border-bottom">
-            <h2>Part <?php echo PART; ?>: JAZZCASH Payment Gateway Integration in PHP - Checkout</h2>
         </div>
         <span id="success-msg" class="payment-errors"></span>
 
