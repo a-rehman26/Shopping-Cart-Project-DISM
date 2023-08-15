@@ -47,10 +47,21 @@
 
                         echo $cart_rows_nav;
                     } else {
-                        echo "0";
+
+                        if (isset($_SESSION['temp_cart_id'])) {
+
+                            $temp_cart_id = $_SESSION['temp_cart_id'];
+
+                            $select_temp_cart_items = mysqli_query($con, " SELECT * FROM `cart` WHERE user_id = '$temp_cart_id' ");
+
+                            $cart_rows_nav_tem = mysqli_num_rows($select_temp_cart_items);
+
+                            echo $cart_rows_nav_tem;
+                        } else {
+                            echo "0";
+                        }
                     }
                     ?>
-
                 </span>
             </a>
         </div>
@@ -507,7 +518,7 @@
                                         $pass_login = $_POST['pass_login'];
 
                                         // u_status = 'Active' = if user not verify email otherwise user not login 
-                                        $email_select_login = mysqli_query($con, " SELECT * FROM `users` WHERE u_email = '$email_login' AND u_status = 'Active' ");
+                                        $email_select_login = mysqli_query($con, " SELECT * FROM `users` WHERE u_email = '$email_login' ");
 
                                         $email_rows = mysqli_num_rows($email_select_login);
 

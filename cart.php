@@ -122,6 +122,8 @@ session_start();
                                             $user_id = $_SESSION['user_id'];
                                             $product_id_cart = $_POST['product_ID_cart'];
 
+                                            $_SESSION['p_id_checkout'] = $product_id_cart;
+
                                             // Perform the database operation to update the cart item's quantity
                                             $update_query = mysqli_query($con, "UPDATE `cart` SET `cart_quantity`='$new_quantity' WHERE user_id = '$user_id' AND product_id = '$product_id_cart'");
 
@@ -172,7 +174,6 @@ session_start();
 
                             while ($data_fetch_cart_non_login = mysqli_fetch_assoc($select_cart_data_non_login)) {
                             ?>
-
 
                                 <tbody>
 
@@ -255,15 +256,54 @@ session_start();
                     <div class="card-header bg-secondary border-0">
                         <h4 class="font-weight-semi-bold m-0">Cart Summary</h4>
                     </div>
-                    <div class="card-body">
 
-                    </div>
+                    <!-- <div class="card-body">
+                        <div class="custom-control custom-radio">
+                            <input type="radio" class="custom-control-input" value="Cash_On_Delivery" name="checkout_payment_inputs_radio" id="CashOnDelivery">
+                            <label class="custom-control-label" for="CashOnDelivery">Cash On Delivery</label>
+                        </div>
+                    </div> -->
+
                     <div class="card-footer border-secondary bg-transparent">
                         <div class="d-flex justify-content-between mt-2">
                             <h5 class="font-weight-bold">CART SUBTOTAL</h5>
                             <h5 class="font-weight-bold" id="cart_total">RS: 0 </h5>
                         </div>
-                        <a href="checkout.php" class="btn btn-block btn-primary my-3 py-3">Proceed To Checkout</a>
+
+                        <?php
+                        include 'Connection.php';
+
+                        if (isset($_SESSION['user_id'])) {
+                            $user_id =  $_SESSION['user_id'];
+
+                            $select_cart_data_two = mysqli_query($con, "SELECT * FROM `cart` WHERE user_id = '$user_id'");
+
+                            if ($select_cart_data_two) {
+                                if (mysqli_num_rows($select_cart_data_two) > 0) {
+                                    $data_fetch_cart = mysqli_fetch_assoc($select_cart_data_two);
+
+                                    if (isset($data_fetch_cart['product_id'])) {
+                                        echo '<a href="checkout_jazz.php?PRODUCTidCheckout=' . $data_fetch_cart['product_id'] . '" class="btn btn-block btn-primary my-3 py-3">Proceed To Checkout</a>';
+                                    } else {
+                                        echo "Product information not available.";
+                                    }
+                                    // Cash On Delivery option
+                                    echo
+                                    '<a href="checkout.php" class="btn btn-block btn-primary my-3 py-3">Proceed To Checkout (COD)</a>';
+                                } else {
+                                    echo "Your cart is empty.";
+                                }
+                            } else {
+                                // Handle database query error
+                                echo "Error fetching cart data.";
+                            }
+                        } else {
+                            echo "Please log in or sign up to proceed with the checkout.";
+                        }
+
+                        ?>
+
+
                     </div>
                 </div>
             </div>

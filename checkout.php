@@ -158,7 +158,7 @@ session_start();
                         <div class="card-header bg-secondary border-0">
                             <h4 class="font-weight-semi-bold m-0">Payment</h4>
                         </div>
-                        <div class="card-body">
+                        <!-- <div class="card-body">
                             <div class="form-group">
                                 <div class="custom-control custom-radio">
                                     <input type="radio" class="custom-control-input" value="Cash_On_Delivery" name="checkout_payment_inputs_radio" id="CashOnDelivery">
@@ -177,7 +177,7 @@ session_start();
                                     <label class="custom-control-label" for="BankTransfer">Bank Transfer</label>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                         <div class="card-footer border-secondary bg-transparent">
                             <input type="submit" class="btn btn-lg btn-block btn-primary font-weight-bold my-3" name="btn_order_place" id="">
                         </div>
@@ -232,11 +232,9 @@ if (isset($_POST['btn_order_place'])) {
     $checkout_city = $_POST['city'];
     $checkout_zipCode = $_POST['zipCode'];
 
-    $checkout_payment = $_POST['checkout_payment_inputs_radio'];
-
     $insert_checkout_form = mysqli_query($con, " INSERT INTO `checkout`( `checkout_Fname`, `checkout_Lname`, `checkout_email`, `checkout_mobile`, `checkout_address1`, `checkout_address2`, `checkout_city`, `checkout_zip_code`, `checkout_payment_method`) VALUES 
     (
-        '$checkout_F_name','$checkout_L_name','$checkout_email','$checkout_mobile','$checkout_address01','$checkout_address02','$checkout_city','$checkout_zipCode','$checkout_payment' ) ");
+        '$checkout_F_name','$checkout_L_name','$checkout_email','$checkout_mobile','$checkout_address01','$checkout_address02','$checkout_city','$checkout_zipCode','Cash On Delivery' ) ");
 
     if ($insert_checkout_form) {
 ?>
@@ -257,4 +255,28 @@ if (isset($_POST['btn_order_place'])) {
     }
 }
 
-?>
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (isset($_POST['btn_order_place'])) {
+        // Order placement button is clicked
+
+        // Check if the user is logged in
+        if (isset($_SESSION['user_id'])) {
+            $user_id =  $_SESSION['user_id'];
+
+            // Clear the cart by updating the database
+            $clear_cart_query = "DELETE FROM `cart` WHERE user_id = '$user_id'";
+            $clear_cart_result = mysqli_query($con, $clear_cart_query);
+
+            if ($clear_cart_result) {
+                // Clear the cart data from the session
+                // unset($_SESSION['cart']);
+
+                // Redirect the user to a confirmation page or any other page
+                header('Location:order_confirmation.php');
+                exit();
+            } else {
+                echo "Error clearing cart: " . mysqli_error($con);
+            }
+        }
+    }
+}
