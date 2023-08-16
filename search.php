@@ -106,7 +106,6 @@ session_start();
                         <input type="hidden" name="cart_pName" value="<?php echo $row_product['p_name'] ?>" id="">
                         <input type="hidden" name="cart_pPrice" value="<?php echo $row_product['p_price'] ?>" id="">
 
-
                     </form>
 
                 <?php

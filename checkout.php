@@ -273,6 +273,7 @@ if (isset($_SESSION['user_id']) && isset($_POST['btn_order_place'])) {
     $result = mysqli_query($con, $insert_order_query);
 
     if ($result) {
+
         $order_id = mysqli_insert_id($con); // Get the auto-generated order ID
 
         // Insert items from cart into 'order_items' table
@@ -296,7 +297,7 @@ if (isset($_SESSION['user_id']) && isset($_POST['btn_order_place'])) {
         <script>
             alert("Order placed SuccessFully.")
 
-            location.replace('cart.php');
+            location.replace('user_panel.php');
         </script>
 
     <?php

@@ -1,3 +1,0 @@
-website host
-registration form OTP
-forgot password work o login for users

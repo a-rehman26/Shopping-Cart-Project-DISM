@@ -1,2 +1,0 @@
-ALTER TABLE product ADD FULLTEXT(`p_name`);
-SELECT * FROM product WHERE match (p_name) against ('bag');

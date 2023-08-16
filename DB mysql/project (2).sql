@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 15, 2023 at 10:01 PM
+-- Generation Time: Aug 16, 2023 at 10:55 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -86,13 +86,6 @@ CREATE TABLE `checkout` (
   `checkout_payment_method` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `checkout`
---
-
-INSERT INTO `checkout` (`checkout_id`, `user_id`, `checkout_Fname`, `checkout_Lname`, `checkout_email`, `checkout_mobile`, `checkout_address1`, `checkout_address2`, `checkout_city`, `checkout_zip_code`, `checkout_payment_method`) VALUES
-(18, '6', 'Abdul', 'Rehman Gujjar', 'rehmangujjar7860@gmail.com', '03157458749', 'lines area saddar karachi', 'Same', 'Karachi', '414578', 'Cash On Delivery');
-
 -- --------------------------------------------------------
 
 --
@@ -153,13 +146,6 @@ CREATE TABLE `orders` (
   `order_date` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
---
--- Dumping data for table `orders`
---
-
-INSERT INTO `orders` (`order_id`, `user_id`, `order_total`, `order_status`, `order_date`) VALUES
-(3, 6, 500.00, 'Pending', '2023-08-15 19:49:01');
-
 -- --------------------------------------------------------
 
 --
@@ -173,14 +159,6 @@ CREATE TABLE `order_items` (
   `quantity` int(11) NOT NULL,
   `price` decimal(10,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Dumping data for table `order_items`
---
-
-INSERT INTO `order_items` (`item_id`, `order_id`, `product_id`, `quantity`, `price`) VALUES
-(3, 3, 13, 1, 100.00),
-(4, 3, 19, 2, 200.00);
 
 -- --------------------------------------------------------
 
@@ -233,7 +211,8 @@ INSERT INTO `product` (`p_id`, `p_name`, `p_price`, `p_des`, `p_cat`, `p_image`)
 (16, 'Face Wash', '60', 'Our effective yet gentle facial cleanser washes away excess oil, dirt and bacteria and removes makeup without over-drying or irritating skin, leaving skin feeling soft and clean', 1, 'face wash image 02.jpg'),
 (17, 'Makeup Box', '130', 'This most wanted makeup gift set comes in a representable gift style packaging with premium protection inside and outside the box. Makeup a great gift idea for any occasion.', 1, 'eye lashes box image 01.webp'),
 (18, 'Hair Gel', '45', 'Best Hair gel for men ..', 1, 'gel image 01.webp'),
-(19, 'Perfume', '200', 'J. brings to you a masterpiece by the name of Janan which has been composed by carefully handpicking the finest of ingredients from a wide range of striking medleys in order to meet your taste.', 1, 'perfume image 01.webp');
+(19, 'janan Perfume', '200', 'J. brings to you a masterpiece by the name of Janan which has been composed by carefully handpicking the finest of ingredients from a wide range of striking medleys in order to meet your taste.', 1, 'perfume image 01.webp'),
+(22, 'Sher Dil Perfume', '300', 'Top Notes: Bergamot, Orange, Mandarine, Lemon, Green Apple Heart Notes: Black Currant, Rose, Jasmine, Freesia, Lily of the Valley, Wallflower, Pepper Base Notes: Cedarwood, Patchouli, Oakmoss, Amber, Leather, Musk', 1, 'perfume image 002.webp');
 
 -- --------------------------------------------------------
 
@@ -371,13 +350,13 @@ ALTER TABLE `admin&employee`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=164;
+  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=173;
 
 --
 -- AUTO_INCREMENT for table `checkout`
 --
 ALTER TABLE `checkout`
-  MODIFY `checkout_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `checkout_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `contact`
@@ -395,19 +374,19 @@ ALTER TABLE `feedbackform`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `order_items`
 --
 ALTER TABLE `order_items`
-  MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `p_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `p_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `p_category`

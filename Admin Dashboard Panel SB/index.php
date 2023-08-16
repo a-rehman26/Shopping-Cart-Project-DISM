@@ -194,6 +194,29 @@ if (!isset($_SESSION['loginUserName'])) {
                     <span>FeedBack Form</span></a>
             </li>
 
+        
+            <!-- Nav Item - Charts -->
+            <li class="nav-item">
+                <a class="nav-link" href="index.php?Checkout">
+                <i class="fa-solid fa-bag-shopping"></i>
+                    <span>Checkout</span></a>
+            </li>
+            
+            <!-- Nav Item - Charts -->
+            <li class="nav-item">
+                <a class="nav-link" href="index.php?Orders">
+                <i class="fa-solid fa-cart-plus"></i>
+                    <span>Orders</span></a>
+            </li>
+
+            <!-- Nav Item - Charts -->
+            <li class="nav-item">
+                <a class="nav-link" href="index.php?OrdersItem">
+                <i class="fa-solid fa-cart-plus"></i>
+                    <span>Orders items</span></a>
+            </li>
+
+
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 
