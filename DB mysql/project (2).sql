@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 16, 2023 at 10:55 PM
+-- Generation Time: Aug 19, 2023 at 12:29 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -86,6 +86,13 @@ CREATE TABLE `checkout` (
   `checkout_payment_method` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `checkout`
+--
+
+INSERT INTO `checkout` (`checkout_id`, `user_id`, `checkout_Fname`, `checkout_Lname`, `checkout_email`, `checkout_mobile`, `checkout_address1`, `checkout_address2`, `checkout_city`, `checkout_zip_code`, `checkout_payment_method`) VALUES
+(22, '6', 'Abdul', 'Rehman', 'rehman55@gmail.com', '03112682258', 'lines area saddar karachi', 'Same', 'Karachi', '012345', 'Cash On Delivery');
+
 -- --------------------------------------------------------
 
 --
@@ -146,6 +153,13 @@ CREATE TABLE `orders` (
   `order_date` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`order_id`, `user_id`, `order_total`, `order_status`, `order_date`) VALUES
+(7, 6, 710.00, 'Delivered', '2023-08-18 19:42:42');
+
 -- --------------------------------------------------------
 
 --
@@ -159,6 +173,14 @@ CREATE TABLE `order_items` (
   `quantity` int(11) NOT NULL,
   `price` decimal(10,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `order_items`
+--
+
+INSERT INTO `order_items` (`item_id`, `order_id`, `product_id`, `quantity`, `price`) VALUES
+(10, 7, 26, 2, 300.00),
+(11, 7, 28, 1, 110.00);
 
 -- --------------------------------------------------------
 
@@ -208,11 +230,10 @@ INSERT INTO `product` (`p_id`, `p_name`, `p_price`, `p_des`, `p_cat`, `p_image`)
 (13, 'Wallet', '100', 'GENUINE LEATHER MENS WALLET: The Timberland Men’s Slimfold Wallet is a thin-designed wallet made from 100% genuine leather. It’s slim design lets it fit perfectly in jeans, dress slacks, and shorts.', 6, 'wallet image 02.jpg'),
 (14, 'Dolls', '40', 'Doll stands 18” tall and features deep brown eyes with rooted eyelashes.', 4, 'doll image 02.jpg'),
 (15, 'Doll', '55', 'Doll is 18” tall and features deep brown eyes with rooted eyelashes.', 4, 'doll image 03.webp'),
-(16, 'Face Wash', '60', 'Our effective yet gentle facial cleanser washes away excess oil, dirt and bacteria and removes makeup without over-drying or irritating skin, leaving skin feeling soft and clean', 1, 'face wash image 02.jpg'),
-(17, 'Makeup Box', '130', 'This most wanted makeup gift set comes in a representable gift style packaging with premium protection inside and outside the box. Makeup a great gift idea for any occasion.', 1, 'eye lashes box image 01.webp'),
-(18, 'Hair Gel', '45', 'Best Hair gel for men ..', 1, 'gel image 01.webp'),
-(19, 'janan Perfume', '200', 'J. brings to you a masterpiece by the name of Janan which has been composed by carefully handpicking the finest of ingredients from a wide range of striking medleys in order to meet your taste.', 1, 'perfume image 01.webp'),
-(22, 'Sher Dil Perfume', '300', 'Top Notes: Bergamot, Orange, Mandarine, Lemon, Green Apple Heart Notes: Black Currant, Rose, Jasmine, Freesia, Lily of the Valley, Wallflower, Pepper Base Notes: Cedarwood, Patchouli, Oakmoss, Amber, Leather, Musk', 1, 'perfume image 002.webp');
+(25, 'Janan Perfume', '200', 'J. brings to you a masterpiece by the name of Janan which has been composed by carefully handpicking the finest of ingredients from a wide range of striking medleys in order to meet your taste.', 1, 'perfume image 01.webp'),
+(26, 'Sher Dil Perfume', '300', 'Top Notes: Bergamot, Orange, Mandarine, Lemon, Green Apple Heart Notes: Black Currant, Rose, Jasmine, Freesia, Lily of the Valley, Wallflower, Pepper Base Notes: Cedarwood, Patchouli, Oakmoss, Amber, Leather, Musk', 1, 'perfume image 002.webp'),
+(27, 'Makeup Box', '65', '1 pair of dramatic black & silver metallic false eyelashes', 1, 'eye lashes box image 01.webp'),
+(28, 'Men\'s Gel', '110', 'These Are Hair Styling Gels', 1, 'men gel image 01.jpg');
 
 -- --------------------------------------------------------
 
@@ -250,6 +271,7 @@ CREATE TABLE `users` (
   `u_email` varchar(255) NOT NULL,
   `u_pass` varchar(255) NOT NULL,
   `u_Cpass` varchar(255) NOT NULL,
+  `Role` varchar(255) NOT NULL DEFAULT 'User',
   `u_number` varchar(255) NOT NULL,
   `OTP` varchar(255) NOT NULL,
   `u_token` varchar(255) NOT NULL,
@@ -260,14 +282,16 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`u_id`, `u_name`, `u_email`, `u_pass`, `u_Cpass`, `u_number`, `OTP`, `u_token`, `u_status`) VALUES
-(1, 'Abdul Rehman', 'abdul556@gmail.com', '123', '123', '03112682258', '85689', '', '0'),
-(2, 'Waqas Ahmed', 'waqas11@gmail.com', '12345', '12345', '03244574589', '82865', '', '0'),
-(3, 'Hamza Afridi', 'hamza12@gmail.com', '', '', '', '95043', '', '0'),
-(4, 'Abdul Asim', 'asim12@gmail.com', '', '', '', '29032', '', '0'),
-(5, 'Laiba Khan', 'laiba123@gmail.com', 'laiba123', 'laiba123', '03115478965', '21446', '', '0'),
-(6, 'Abdul Rehman   ', 'a9889817@gmail.com', '1234', '1234', '03112682258', '18078', '780637', 'Active'),
-(7, 'faizan', 'aptechfaizan@gmail.com', '123', '123', '03363204173', '73354', '832984', 'Active');
+INSERT INTO `users` (`u_id`, `u_name`, `u_email`, `u_pass`, `u_Cpass`, `Role`, `u_number`, `OTP`, `u_token`, `u_status`) VALUES
+(1, 'Abdul Rehman', 'abdul556@gmail.com', '123', '123', '', '03112682258', '85689', '', '0'),
+(2, 'Waqas Ahmed', 'waqas11@gmail.com', '12345', '12345', '', '03244574589', '82865', '', '0'),
+(3, 'Hamza Afridi', 'hamza12@gmail.com', '', '', '', '', '95043', '', '0'),
+(4, 'Abdul Asim', 'asim12@gmail.com', '', '', '', '', '29032', '', '0'),
+(5, 'Laiba Khan', 'laiba123@gmail.com', 'laiba123', 'laiba123', '', '03115478965', '21446', '', '0'),
+(6, 'Abdul Rehman   ', 'a9889817@gmail.com', '1234', '1234', 'User', '03112682258', '18078', '780637', 'Active'),
+(7, 'faizan', 'aptechfaizan@gmail.com', '123', '123', 'User', '03363204173', '73354', '832984', 'Active'),
+(10, 'Hamza', 'hamza123@gmail.com', 'hamza123', '', 'Admin', '', '', '', 'Active'),
+(11, 'Talha', 'talha123@gmail.com', 'talha123', '', 'Employee', '', '', '', 'Active');
 
 --
 -- Indexes for dumped tables
@@ -350,13 +374,13 @@ ALTER TABLE `admin&employee`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=173;
+  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=181;
 
 --
 -- AUTO_INCREMENT for table `checkout`
 --
 ALTER TABLE `checkout`
-  MODIFY `checkout_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `checkout_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `contact`
@@ -374,31 +398,31 @@ ALTER TABLE `feedbackform`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `order_items`
 --
 ALTER TABLE `order_items`
-  MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `p_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `p_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `p_category`
 --
 ALTER TABLE `p_category`
-  MODIFY `c_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `c_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `u_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `u_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- Constraints for dumped tables
