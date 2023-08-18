@@ -61,9 +61,9 @@
                                 <td> <?php echo $fetch_category_data['c_id'] ?> </td>
                                 <td> <?php echo $fetch_category_data['c_name'] ?> </td>
 
-                                <td style="vertical-align: middle;"> <a href="updateCategory.php?UPDATEid=<?php echo $fetch_category_data['c_id'] ?>" title="Edit" style="padding: 20px;" target="_blanks"><i class="fa-solid fa-pen-to-square"></i></a> </td>
+                                <td style="vertical-align: middle;"> <a href="updateCategory.php?UPDATEid=<?php echo $fetch_category_data['c_id'] ?>" title="Edit" style="padding: 20px;"><i class="fa-solid fa-pen-to-square"></i></a> </td>
 
-                                <td style="vertical-align: middle;"> <a href="deleteCategory.php?DELETEid=<?php echo $fetch_category_data['c_id'] ?>" title="Remove" style="padding: 20px;" target="_blank"> <i class="fa-solid fa-trash"></i></a> </td>
+                                <td style="vertical-align: middle;"> <a href="deleteCategory.php?DELETEid=<?php echo $fetch_category_data['c_id'] ?>" title="Remove" style="padding: 20px;"> <i class="fa-solid fa-trash"></i></a> </td>
 
                             </tr>
 

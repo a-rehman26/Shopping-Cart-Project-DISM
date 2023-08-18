@@ -13,10 +13,10 @@ function generateTempCartID()
 
 if (isset($_POST['addToCart'])) {
 
-    $cart_p_name = $_POST['cart_pName'];
-    $cart_p_price = $_POST['cart_pPrice'];
-    $cart_p_image = $_POST['cart_pImage'];
-    $cart_p_id = $_POST['cart_ID'];
+    $cart_p_name = mysqli_real_escape_string($con, $_POST['cart_pName']);
+    $cart_p_price = mysqli_real_escape_string($con, $_POST['cart_pPrice']);
+    $cart_p_image = mysqli_real_escape_string($con, $_POST['cart_pImage']);
+    $cart_p_id = mysqli_real_escape_string($con, $_POST['cart_ID']);
 
     // if cart user login 
     $user_id =  $_SESSION['user_id'];

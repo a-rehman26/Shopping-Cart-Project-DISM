@@ -71,8 +71,8 @@
                                 <td style="vertical-align: middle;"> <?php echo $fetch_product_data['p_des'] ?></td>
                                 <td style="vertical-align: middle;"> <?php echo $fetch_product_data['p_cat'] ?></td>
                                 <td style="vertical-align: middle;"> <img src="Pimages/<?php echo  $fetch_product_data['p_image'] ?> " alt="" style="width: 75px;"> </td>
-                                <td style="vertical-align: middle;"> <a href="UPDATEproduct.php?UPDATEidProduct=<?php echo $fetch_product_data['p_id'] ?>" title="Edit" style="padding: 20px;" target="_blank"><i class="fa-solid fa-pen-to-square"></i></a> </td>
-                                <td style="vertical-align: middle;"> <a href="DELETEproduct.php?DELETEidProduct=<?php echo $fetch_product_data['p_id'] ?>" title="Remove" style="padding: 20px;" target="_blank"><i class="fa-solid fa-trash"></i></a> </td>
+                                <td style="vertical-align: middle;"> <a href="UPDATEproduct.php?UPDATEidProduct=<?php echo $fetch_product_data['p_id'] ?>" title="Edit" style="padding: 20px;"><i class="fa-solid fa-pen-to-square"></i></a> </td>
+                                <td style="vertical-align: middle;"> <a href="DELETEproduct.php?DELETEidProduct=<?php echo $fetch_product_data['p_id'] ?>" title="Remove" style="padding: 20px;"><i class="fa-solid fa-trash"></i></a> </td>
                             </tr>
 
                         <?php

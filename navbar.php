@@ -78,46 +78,20 @@
                 <i class="fa fa-angle-down text-dark"></i>
             </a>
             <nav class="collapse show navbar navbar-vertical navbar-light align-items-start p-0 border border-top-0 border-bottom-0" id="navbar-vertical">
-                <div class="navbar-nav w-100 overflow-hidden" style="height: 410px">
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link" data-toggle="dropdown">Beauty Product <i class="fa fa-angle-down float-right mt-1"></i></a>
-                        <div class="dropdown-menu position-absolute bg-secondary border-0 rounded-0 w-100 m-0">
+                <div class="navbar-nav w-100 overflow-hidden" style="height: auto">
 
-                            <!-- Fetch Beauty Product in navbar  -->
-                            <?php
-                            include 'Connection.php';
-
-                            $select_beauty_product = mysqli_query($con, " SELECT * FROM `product` WHERE p_cat = 1 ");
-
-                            while ($product_beauty = mysqli_fetch_assoc($select_beauty_product)) {
-
-                            ?>
-
-                                <a href="schoolBag.php?SchoolBagID=<?php echo $product_beauty['p_name'] ?>" class="nav-item nav-link"> <?php echo $product_beauty['p_name'] ?> </a>
-
-                            <?php
-
-                            }
-
-                            ?>
-
-                        </div>
-                    </div>
-
-                    <!-- Fetch Stationery Product in navbar  -->
-
+                    <!-- Fetch  Product in navbar  -->
                     <?php
                     include 'Connection.php';
 
-                    $select_category_product = mysqli_query($con, " SELECT DISTINCT p_name
-                    FROM `product`
-                    WHERE p_cat <> 1 ");
+                    $select_category_product = mysqli_query($con, " SELECT DISTINCT c_name
+                    FROM `p_category` ");
 
                     while ($fetch_stationery_product = mysqli_fetch_assoc($select_category_product)) {
 
                     ?>
 
-                        <a href="schoolBag.php?SchoolBagID=<?php echo $fetch_stationery_product['p_name'] ?>" class="nav-item nav-link"> <?php echo $fetch_stationery_product['p_name'] ?> </a>
+                        <a href="schoolBag.php?SchoolBagID=<?php echo $fetch_stationery_product['c_name'] ?>" class="nav-item nav-link"> <?php echo $fetch_stationery_product['c_name'] ?> </a>
 
                     <?php
 
@@ -126,6 +100,7 @@
                     ?>
 
                 </div>
+
             </nav>
         </div>
         <div class="col-lg-9">
@@ -563,7 +538,7 @@
 
                                     <form action="" class="signup" method="post">
                                         <div class="field">
-                                            <input type="text" placeholder="Name" name="name" required>
+                                            <input type="text" pattern="[A-Za-z\s]+" placeholder="Name" name="name" required>
                                         </div>
                                         <div class="field">
                                             <input type="email" placeholder="Email Address" name="email" required>
@@ -575,7 +550,7 @@
                                             <input type="password" placeholder="Confirm password" name="cPass" required>
                                         </div>
                                         <div class="field">
-                                            <input type="text" placeholder="Mobile Number" name="mobile">
+                                            <input type="text" pattern="[0-9]{10}" placeholder="Mobile Number" name="mobile">
                                         </div>
                                         <div class="field btn">
                                             <div class="btn-layer"></div>

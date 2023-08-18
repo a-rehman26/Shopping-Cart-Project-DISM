@@ -38,14 +38,15 @@
                                         <div class="d-flex flex-row align-items-center mb-4">
                                             <div class="form-outline flex-fill mb-0">
                                                 <label class="form-label">Product Name</label>
-                                                <input type="text" name="pName" class="form-control" />
+                                                <input type="text" name="pName" pattern="[A-Za-z\s]+" class="form-control" />
                                             </div>
                                         </div>
 
                                         <div class="d-flex flex-row align-items-center mb-4">
                                             <div class="form-outline flex-fill mb-0">
+                                                <!-- pattern="^\d+(\.\d{1,2})?$" -->
                                                 <label class="form-label">Product Price</label>
-                                                <input type="text" name="pPrice" class="form-control" />
+                                                <input type="text" name="pPrice" pattern="[0-9]+" class="form-control" />
                                             </div>
                                         </div>
 
@@ -86,7 +87,7 @@
                                         <div class="d-flex flex-row align-items-center mb-4">
                                             <div class="form-outline flex-fill mb-0">
                                                 <label class="form-label">Product image</label>
-                                                <input type="file" name="pImage" class="form-control" />
+                                                <input type="file" name="pImage" class="form-control" accept="image/jpeg, image/jpg, image/png, image/gif" />
                                             </div>
                                         </div>
 
@@ -136,8 +137,12 @@ if (isset($_POST['btnAddProduct'])) {
 
     } else {
 
-        $insert_query_product = mysqli_query($con, " INSERT INTO `product`( `p_name`, `p_price`, `p_des`, `p_cat`, `p_image` ) VALUES (
-            '$p_Name','$p_Price','$p_Description','$p_Category','$p_Image') ");
+        $insert_query_product = mysqli_query($con, "INSERT INTO `product` (`p_name`, `p_price`, `p_des`, `p_cat`, `p_image`) VALUES (
+            '" . mysqli_real_escape_string($con, $p_Name) . "',
+            '" . mysqli_real_escape_string($con, $p_Price) . "',
+            '" . mysqli_real_escape_string($con, $p_Description) . "',
+            '" . mysqli_real_escape_string($con, $p_Category) . "',
+            '" . mysqli_real_escape_string($con, $p_Image) . "')");
 
         if ($insert_query_product) {
 

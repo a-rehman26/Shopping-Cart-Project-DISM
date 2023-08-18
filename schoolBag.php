@@ -63,22 +63,8 @@ session_start();
             <!-- Shop Product Start -->
             <div class="col-lg-12 col-md-12">
                 <div class="row pb-3">
-                    <div class="col-12 pb-1">
-                        <div class="d-flex align-items-center justify-content-between mb-4">
-                            <form action="">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Search by name">
-                                    <div class="input-group-append">
-                                        <span class="input-group-text bg-transparent text-primary">
-                                            <i class="fa fa-search"></i>
-                                        </span>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
 
-                    <!-- product fetch in shop page  -->
+                    <!-- navbar category product fetch in shop page   -->
                     <?php
                     include 'Connection.php';
 
@@ -86,7 +72,9 @@ session_start();
 
                         $productID_fetch = $_GET['SchoolBagID'];
 
-                        $select_product = mysqli_query($con, " SELECT * FROM `product` WHERE p_name = '$productID_fetch' ");
+                        $select_product = mysqli_query($con, "SELECT * FROM `product` WHERE p_cat = (SELECT c_id FROM `p_category` WHERE c_name = '$productID_fetch')");
+
+                        // $select_product = mysqli_query($con, " SELECT * FROM `product` WHERE p_name = '$productID_fetch' ");
 
                         while ($fetch_products = mysqli_fetch_assoc($select_product)) {
 
