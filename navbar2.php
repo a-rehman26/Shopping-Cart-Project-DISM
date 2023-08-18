@@ -462,53 +462,79 @@
                                         <div class="signup-link">Create an account <a href="">Signup now</a></div>
                                     </form>
 
+                                    <!-- // Check if the login form is submitted -->
                                     <?php
-
-                                    // Check if the login form is submitted
                                     if (isset($_POST['btnLogin'])) {
 
                                         $email_login = $_POST['email_login'];
                                         $pass_login = $_POST['pass_login'];
 
-                                        // u_status = 'Active' = if user not verify email otherwise user not login 
-                                        $email_select_login = mysqli_query($con, " SELECT * FROM `users` WHERE u_email = '$email_login' AND u_status = 'Active' ");
+                                        // u_status = 'Active' = if user is not verified via email, otherwise the user cannot login
+                                        $email_select_login = mysqli_query($con, "SELECT * FROM `users` WHERE u_email = '$email_login' AND u_status = 'Active' ");
 
                                         $email_rows = mysqli_num_rows($email_select_login);
 
                                         if ($email_rows) {
-
                                             $data_fetch_login = mysqli_fetch_assoc($email_select_login);
+
+                                            $name_db = $data_fetch_login['u_name'];
+
+                                            $_SESSION['user_name'] = $name_db;
 
                                             $email_db = $data_fetch_login['u_email'];
                                             $pass_db = $data_fetch_login['u_pass'];
-
-                                            $user_id = $data_fetch_login['u_id'];
-                                            $_SESSION['user_id'] = $user_id;
+                                            $role_db = $data_fetch_login['Role']; // Assuming role is stored in the 'role' column
 
                                             if ($email_db == $email_login && $pass_db == $pass_login) {
+                                                // Successfully logged in
+
+                                                $_SESSION['user_id'] = $data_fetch_login['u_id'];
+                                                $_SESSION['user_name'] = $data_fetch_login['u_name'];
+
+                                                $email_fetch = $data_fetch_login['u_email'];
+                                                $username_fetch = $data_fetch_login['u_name'];
+                                                $role_fetch = $data_fetch_login['Role'];
+
+                                                $_SESSION['loginRole'] = $role_fetch;
+                                                $_SESSION['loginUserName'] = $username_fetch;
+
+                                                if ($role_db == 'Admin' || $role_db == 'Employee') {
+                                                    // Redirect to admin or employee dashboard
                                     ?>
-                                                <script>
-                                                    alert("Login Done")
+                                                    <script>
+                                                        alert("Login Done Welcome")
 
-                                                    location.replace('index.php');
-                                                </script>
-                                            <?php
+                                                        location.replace("Admin Dashboard Panel SB/dashboard_index.php");
+                                                    </script>
+                                                <?php
+                                                } else {
+                                                    // Redirect to user dashboard
+                                                ?>
+                                                    <script>
+                                                        alert("Login Done Welcome")
 
-                                                $name_db = $data_fetch_login['u_name'];
+                                                        location.replace("index.php");
+                                                    </script>
+                                                <?php
+                                                }
 
-                                                $_SESSION['user_name'] = $name_db;
+                                                exit();
                                             } else {
-                                            ?>
+                                                ?>
+
                                                 <script>
                                                     alert("Password incorrect")
                                                 </script>
+
                                             <?php
                                             }
                                         } else {
                                             ?>
+
                                             <script>
                                                 alert("Email incorrect")
                                             </script>
+
                                     <?php
                                         }
                                     }

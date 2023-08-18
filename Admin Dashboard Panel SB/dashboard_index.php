@@ -2,7 +2,7 @@
 session_start();
 
 if (!isset($_SESSION['loginUserName'])) {
-    header('location: login.php');
+    header('Location: ../index.php');
     exit();
 }
 
@@ -45,7 +45,7 @@ if (!isset($_SESSION['loginUserName'])) {
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="dashboard_index.php">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
@@ -58,7 +58,7 @@ if (!isset($_SESSION['loginUserName'])) {
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="index.php">
+                <a class="nav-link" href="dashboard_index.php">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -89,8 +89,8 @@ if (!isset($_SESSION['loginUserName'])) {
                 </a>
                 <div id="collapseOne" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="index.php?AddCategory">Add Categories</a>
-                        <a class="collapse-item" href="index.php?ViewCategory">View Categories</a>
+                        <a class="collapse-item" href="dashboard_index.php?AddCategory">Add Categories</a>
+                        <a class="collapse-item" href="dashboard_index.php?ViewCategory">View Categories</a>
                     </div>
                 </div>
             </li>
@@ -104,8 +104,8 @@ if (!isset($_SESSION['loginUserName'])) {
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="index.php?AddProduct">Add Product</a>
-                        <a class="collapse-item" href="index.php?ViewProduct">View Product</a>
+                        <a class="collapse-item" href="dashboard_index.php?AddProduct">Add Product</a>
+                        <a class="collapse-item" href="dashboard_index.php?ViewProduct">View Product</a>
                     </div>
                 </div>
             </li>
@@ -115,49 +115,49 @@ if (!isset($_SESSION['loginUserName'])) {
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="index.php?Users">
+                <a class="nav-link" href="dashboard_index.php?Users">
                     <i class="fa-solid fa-users"></i>
                     <span>Users</span></a>
             </li>
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="index.php?Carts">
+                <a class="nav-link" href="dashboard_index.php?Carts">
                 <i class="fa-solid fa-cart-plus"></i>
                     <span>Carts</span></a>
             </li>
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="index.php?Checkout">
+                <a class="nav-link" href="dashboard_index.php?Checkout">
                 <i class="fa-solid fa-bag-shopping"></i>
                     <span>Checkout</span></a>
             </li>
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="index.php?Orders">
+                <a class="nav-link" href="dashboard_index.php?Orders">
                 <i class="fa-solid fa-cart-plus"></i>
                     <span>Orders</span></a>
             </li>
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="index.php?OrdersItem">
+                <a class="nav-link" href="dashboard_index.php?OrdersItem">
                 <i class="fa-solid fa-cart-plus"></i>
                     <span>Orders items</span></a>
             </li>
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="index.php?ContactForm">
+                <a class="nav-link" href="dashboard_index.php?ContactForm">
                     <i class="fa-regular fa-address-book"></i>
                     <span>Contact Form</span></a>
             </li>
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="index.php?feedBackForm">
+                <a class="nav-link" href="dashboard_index.php?feedBackForm">
                     <i class="fa-solid fa-message"></i>
                     <span>FeedBack Form</span></a>
             </li>
@@ -182,14 +182,14 @@ if (!isset($_SESSION['loginUserName'])) {
                 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="index.php?ContactForm">
+                <a class="nav-link" href="dashboard_index.php?ContactForm">
                     <i class="fa-regular fa-address-book"></i>
                     <span>Contact Form</span></a>
             </li>
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="index.php?feedBackForm">
+                <a class="nav-link" href="dashboard_index.php?feedBackForm">
                     <i class="fa-solid fa-message"></i>
                     <span>FeedBack Form</span></a>
             </li>
@@ -197,21 +197,21 @@ if (!isset($_SESSION['loginUserName'])) {
         
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="index.php?Checkout">
+                <a class="nav-link" href="dashboard_index.php?Checkout">
                 <i class="fa-solid fa-bag-shopping"></i>
                     <span>Checkout</span></a>
             </li>
             
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="index.php?Orders">
+                <a class="nav-link" href="dashboard_index.php?Orders">
                 <i class="fa-solid fa-cart-plus"></i>
                     <span>Orders</span></a>
             </li>
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="index.php?OrdersItem">
+                <a class="nav-link" href="dashboard_index.php?OrdersItem">
                 <i class="fa-solid fa-cart-plus"></i>
                     <span>Orders items</span></a>
             </li>
@@ -383,8 +383,27 @@ if (!isset($_SESSION['loginUserName'])) {
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                Earnings (Monthly)</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+                                                Orders</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"> 
+                                            
+                                            <?php
+                                            include "Connection.php";
+
+                                            $count_query = "SELECT COUNT(*) AS order_count FROM orders";
+                                            $result_count = mysqli_query($con, $count_query);
+                                            $row_count = mysqli_fetch_assoc($result_count);
+                                            $order_count = $row_count["order_count"];
+
+                                            $total_query = "SELECT SUM(order_total) AS total_value FROM orders";
+                                            $result_total = mysqli_query($con, $total_query);
+                                            $row_total = mysqli_fetch_assoc($result_total);
+                                            $total_value = $row_total["total_value"];
+                                            
+                                            echo "Total Orders: " . $order_count;
+                                            
+                                            ?>
+                                            
+                                            </div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -401,8 +420,27 @@ if (!isset($_SESSION['loginUserName'])) {
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                Earnings (Annual)</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
+                                                Earnings (Order)</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                            
+                                            <?php
+                                            include " Connection.php ";
+                                            
+                                            $count_query = " SELECT COUNT(*) AS order_count FROM orders ";
+                                            $result_count = mysqli_query($con, $count_query);
+                                            $row_count = mysqli_fetch_assoc($result_count);
+                                            $order_count = $row_count["order_count"];
+                                            
+                                            $total_query = " SELECT SUM(order_total) AS total_value FROM orders ";
+                                            $result_total = mysqli_query($con, $total_query);
+                                            $row_total = mysqli_fetch_assoc($result_total);
+                                            $total_value = $row_total["total_value"];
+                                            
+                                            echo " Total Order Value: RS " . $total_value ;
+
+                                            ?>                                            
+
+                                            </div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>

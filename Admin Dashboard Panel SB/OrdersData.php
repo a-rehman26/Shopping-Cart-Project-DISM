@@ -68,7 +68,21 @@
                                 <td style="vertical-align: middle;"> <?php echo $fetch_order_data['order_id'] ?></td>
                                 <td style="vertical-align: middle;"> <?php echo $fetch_order_data['user_id'] ?></td>
                                 <td style="vertical-align: middle;"> <?php echo $fetch_order_data['order_total'] ?></td>
-                                <td style="vertical-align: middle;"> <?php echo $fetch_order_data['order_status'] ?></td>
+                                <td style="vertical-align: middle;">
+
+                                    <!-- Admin Panel HTML: Update Order Status Form -->
+                                    <form action="update_order_status.php" method="post">
+                                        <input type="hidden" name="order_id" value="<?php echo $fetch_order_data['order_id']; ?>">
+                                        <select name="new_status" class="form-control mb-3">
+                                            <option value="Pending" <?php if ($fetch_order_data['order_status'] === 'Pending') echo 'selected'; ?>>Pending</option>
+                                            <option value="Shipped" <?php if ($fetch_order_data['order_status'] === 'Shipped') echo 'selected'; ?>>Shipped</option>
+                                            <option value="Delivered" <?php if ($fetch_order_data['order_status'] === 'Delivered') echo 'selected'; ?>>Delivered</option>
+                                            <option value="Cancel" <?php if ($fetch_order_data['order_status'] === 'Cancel') echo 'selected'; ?>>Cancel</option>
+                                        </select>
+                                        <button type="submit" class="btn btn-sm btn-outline-primary">Update Status</button>
+                                    </form>
+
+                                </td>
                                 <td style="vertical-align: middle;"> <?php echo $fetch_order_data['order_date'] ?></td>
                                 <td style="vertical-align: middle;"> <a href="#" title="Edit" style="padding: 20px;"><i class="fa-solid fa-pen-to-square"></i></a> </td>
                                 <td style="vertical-align: middle;"> <a href="#" title="Remove" style="padding: 20px;"><i class="fa-solid fa-trash"></i></a> </td>
