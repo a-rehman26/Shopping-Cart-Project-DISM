@@ -331,247 +331,159 @@ if (!isset($_SESSION['loginUserName'])) {
                     </nav>
                     <!-- End of Topbar -->
 
-                    <!-- Begin Page Content -->
-                    <div class="container-fluid">
+                    <!-- product search fetch  -->
 
-                        <!-- Page Heading -->
-                        <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                            <h1 class="h3 mb-0" style="color: #555;"> <?php echo $_SESSION['loginRole']; ?> </h1>
-                        </div>
+                    <div class="container">
+
+                        <h3 class="mt-4">Search result for "<?php echo $_GET['dashboard_search'] ?>" </h3>
 
                         <?php
-                        if (isset($_GET['AddProduct'])) {
-                            include 'addProduct.php';
-                        } else if (isset($_GET['ViewProduct'])) {
-                            include 'viewProduct.php';
-                        } else if (isset($_GET['AddCategory'])) {
-                            include 'addCategory.php';
-                        } else if (isset($_GET['ViewCategory'])) {
-                            include 'ViewCategory.php';
-                        } else if (isset($_GET['ContactForm'])) {
-                            include 'ContactForm.php';
-                        } else if (isset($_GET['Users'])) {
-                            include 'Users.php';
-                        } else if (isset($_GET['feedBackForm'])) {
-                            include 'feedBackForm.php';
-                        } else if (isset($_GET['Carts'])) {
-                            include 'Carts.php';
-                        } else if (isset($_GET['Checkout'])) {
-                            include 'CheckoutData.php';
-                        } else if (isset($_GET['Orders'])) {
-                            include 'OrdersData.php';
-                        } else if (isset($_GET['OrdersItem'])) {
-                            include 'order_item.php';
-                        } else {
+                        include 'Connection.php';
 
-                            echo
-                            '
-                        
-                    <!-- Content Row -->
-                    <div class="row">
+                        $noResult = true;
 
-                        <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-primary shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                Orders</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800"> 
-                                            
-                                            <?php
-                                            include "Connection.php";
+                        // Search for users
 
-                                            $count_query = "SELECT COUNT(*) AS order_count FROM orders";
-                                            $result_count = mysqli_query($con, $count_query);
-                                            $row_count = mysqli_fetch_assoc($result_count);
-                                            $order_count = $row_count["order_count"];
+                        $search_input = $_GET['dashboard_search'];
 
-                                            $total_query = "SELECT SUM(order_total) AS total_value FROM orders";
-                                            $result_total = mysqli_query($con, $total_query);
-                                            $row_total = mysqli_fetch_assoc($result_total);
-                                            $total_value = $row_total["total_value"];
-                                            
-                                            echo "Total Orders: " . $order_count;
-                                            
-                                            ?>
-                                            
-                                            </div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        $user_query = "SELECT * FROM users WHERE u_name LIKE '%$search_input%'";
+                        $user_results = mysqli_query($con, $user_query);
 
-                        <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-success shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                Earnings (Order)</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                            
-                                            <?php
-                                            include " Connection.php ";
-                                            
-                                            $count_query = " SELECT COUNT(*) AS order_count FROM orders ";
-                                            $result_count = mysqli_query($con, $count_query);
-                                            $row_count = mysqli_fetch_assoc($result_count);
-                                            $order_count = $row_count["order_count"];
-                                            
-                                            $total_query = " SELECT SUM(order_total) AS total_value FROM orders ";
-                                            $result_total = mysqli_query($con, $total_query);
-                                            $row_total = mysqli_fetch_assoc($result_total);
-                                            $total_value = $row_total["total_value"];
-                                            
-                                            echo " Total Order Value: RS " . $total_value ;
+                        while ($row_user_product = mysqli_fetch_assoc($user_results)) {
 
-                                            ?>                                            
+                            $p_id = $row_user_product['u_id'];
+                            $p_Name = $row_user_product['u_name'];
+                            $p_Price = $row_user_product['u_email'];
+                            $p_Image = $row_user_product['u_pass'];
+                            $p_Image = $row_user_product['u_Cpass'];
+                            $p_Image = $row_user_product['Role'];
+                            $p_Image = $row_user_product['u_number'];
+                            $p_Image = $row_user_product['OTP'];
+                            $p_Image = $row_user_product['u_token'];
+                            $p_Image = $row_user_product['u_status'];
 
-                                            </div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-info shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Tasks
-                                            </div>
-                                            <div class="row no-gutters align-items-center">
-                                                <div class="col-auto">
-                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
-                                                </div>
-                                                <div class="col">
-                                                    <div class="progress progress-sm mr-2">
-                                                        <div class="progress-bar bg-info" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Pending Requests Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-warning shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                                Pending Requests</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-comments fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Content Row -->
-
-                    <div class="row">
-
-                        <!-- Area Chart -->
-                        <div class="col-xl-8 col-lg-7">
-                            <div class="card shadow mb-4">
-                                <!-- Card Header - Dropdown -->
-                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Earnings Overview</h6>
-                                    <div class="dropdown no-arrow">
-                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                                            <div class="dropdown-header">Dropdown Header:</div>
-                                            <a class="dropdown-item" href="#">Action</a>
-                                            <a class="dropdown-item" href="#">Another action</a>
-                                            <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item" href="#">Something else here</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Card Body -->
-                                <div class="card-body">
-                                    <div class="chart-area">
-                                        <canvas id="myAreaChart"></canvas>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Pie Chart -->
-                        <div class="col-xl-4 col-lg-5">
-                            <div class="card shadow mb-4">
-                                <!-- Card Header - Dropdown -->
-                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Revenue Sources</h6>
-                                    <div class="dropdown no-arrow">
-                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                                            <div class="dropdown-header">Dropdown Header:</div>
-                                            <a class="dropdown-item" href="#">Action</a>
-                                            <a class="dropdown-item" href="#">Another action</a>
-                                            <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item" href="#">Something else here</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Card Body -->
-                                <div class="card-body">
-                                    <div class="chart-pie pt-4 pb-2">
-                                        <canvas id="myPieChart"></canvas>
-                                    </div>
-                                    <div class="mt-4 text-center small">
-                                        <span class="mr-2">
-                                            <i class="fas fa-circle text-primary"></i> Direct
-                                        </span>
-                                        <span class="mr-2">
-                                            <i class="fas fa-circle text-success"></i> Social
-                                        </span>
-                                        <span class="mr-2">
-                                            <i class="fas fa-circle text-info"></i> Referral
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                        ';
-                        }
+                            $noResult = false;
 
                         ?>
 
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="text-center table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                        <thead>
+                                            <tr style="color: #555; font-size: 1.2rem;">
+                                                <th style="vertical-align: middle;">U ID</th>
+                                                <th style="vertical-align: middle;">User Name</th>
+                                                <th style="vertical-align: middle;">User Email</th>
+                                                <th style="vertical-align: middle;">Password</th>
+                                                <th style="vertical-align: middle;">Confirm Password</th>
+                                                <th style="vertical-align: middle;">Phone Number</th>
+                                                <th style="vertical-align: middle;">OTP</th>
+                                                <th style="vertical-align: middle;">User Token</th>
+                                                <th style="vertical-align: middle;">User Status</th>
+                                                <th style="vertical-align: middle;" colspan="2">Action</th>
+                                            </tr>
+                                        </thead>
+
+                                        <tbody>
+
+                                            <tr>
+                                                <td style="vertical-align: middle;"> <?php echo $row_user_product['u_id']  ?></td>
+                                                <td style="vertical-align: middle;"> <?php echo $row_user_product['u_name'] ?></td>
+                                                <td style="vertical-align: middle;"> <?php echo $row_user_product['u_email'] ?></td>
+                                                <td style="vertical-align: middle;"> <?php echo $row_user_product['u_pass'] ?></td>
+                                                <td style="vertical-align: middle;"> <?php echo $row_user_product['u_Cpass'] ?></td>
+                                                <td style="vertical-align: middle;"> <?php echo $row_user_product['u_number'] ?></td>
+                                                <td style="vertical-align: middle;"> <?php echo $row_user_product['OTP'] ?></td>
+                                                <td style="vertical-align: middle;"> <?php echo $row_user_product['u_token'] ?></td>
+                                                <td style="vertical-align: middle;"> <?php echo $row_user_product['u_status'] ?></td>
+                                                <td style="vertical-align: middle;"> <a href="#" title="Edit" style="padding: 20px;"><i class="fa-solid fa-pen-to-square"></i></a> </td>
+                                                <td style="vertical-align: middle;"> <a href="#" title="Remove" style="padding: 20px;"><i class="fa-solid fa-trash"></i></a> </td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
                     </div>
-                    <!-- /.container-fluid -->
+
+                <?php
+                        }
+
+                ?>
+
+
+                <?php
+                // Search for products
+
+                $search_input = $_GET['dashboard_search'];
+
+                $product_query = "SELECT * FROM product WHERE p_name LIKE '%$search_input%'";
+                $search_results = mysqli_query($con, $product_query);
+
+                while ($row_product = mysqli_fetch_assoc($search_results)) {
+
+                    $p_Name = $row_product['p_name'];
+                    $p_Price = $row_product['p_price'];
+                    $p_Image = $row_product['p_image'];
+                    $p_id = $row_product['p_id'];
+
+                    $noResult = false;
+
+                ?>
+
+
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="text-center table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <thead>
+                                    <tr style="color: #555; font-size: 1.2rem;">
+                                        <th style="vertical-align: middle;">Product ID</th>
+                                        <th style="vertical-align: middle;">Product Name</th>
+                                        <th style="vertical-align: middle;">Product Price</th>
+                                        <th style="vertical-align: middle;">Product Description</th>
+                                        <th style="vertical-align: middle;">Product Category</th>
+                                        <th style="vertical-align: middle;">Product image</th>
+                                        <th style="vertical-align: middle;" colspan="2">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td style="vertical-align: middle;"> <?php echo $row_product['p_id'] ?></td>
+                                        <td style="vertical-align: middle;"> <?php echo $row_product['p_name'] ?></td>
+                                        <td style="vertical-align: middle;"> <?php echo $row_product['p_price'] ?></td>
+                                        <td style="vertical-align: middle;"> <?php echo $row_product['p_des'] ?></td>
+                                        <td style="vertical-align: middle;"> <?php echo $row_product['p_cat'] ?></td>
+                                        <td style="vertical-align: middle;"> <img src="Pimages/<?php echo  $row_product['p_image'] ?> " alt="" style="width: 75px;"> </td>
+                                        <td style="vertical-align: middle;"> <a href="#" title="Edit" style="padding: 20px;"><i class="fa-solid fa-pen-to-square"></i></a> </td>
+                                        <td style="vertical-align: middle;"> <a href="#" title="Remove" style="padding: 20px;"><i class="fa-solid fa-trash"></i></a> </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                <?php
+                }
+
+                if ($noResult) {
+                    echo
+                    "
+                            No Result:
+                            
+                            &nbsp
+                            
+                            <p> 
+                            
+                            Your search [ '$search_input' ] did not match any Word.
+                            
+                            </p>
+                            
+                            ";
+                }
+
+                ?>
 
                 </div>
-                <!-- End of Main Content -->
 
                 <!-- Footer -->
                 <footer class="sticky-footer bg-white">
