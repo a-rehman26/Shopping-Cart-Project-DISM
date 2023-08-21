@@ -38,7 +38,7 @@
                                         <div class="d-flex flex-row align-items-center mb-4">
                                             <div class="form-outline flex-fill mb-0">
                                                 <label class="form-label">Product Name</label>
-                                                <input type="text" name="pName" pattern="[A-Za-z\s]+" class="form-control" />
+                                                <input type="text" name="pName" pattern="[A-Za-z\s]+" class="form-control" required />
                                             </div>
                                         </div>
 
@@ -46,21 +46,21 @@
                                             <div class="form-outline flex-fill mb-0">
                                                 <!-- pattern="^\d+(\.\d{1,2})?$" -->
                                                 <label class="form-label">Product Price</label>
-                                                <input type="text" name="pPrice" pattern="[0-9]+" class="form-control" />
+                                                <input type="text" name="pPrice" pattern="[0-9]+" class="form-control" required />
                                             </div>
                                         </div>
 
                                         <div class="d-flex flex-row align-items-center mb-4">
                                             <div class="form-outline flex-fill mb-0">
                                                 <label class="form-label">Product Description</label>
-                                                <input type="text" name="pDes" class="form-control" />
+                                                <input type="text" name="pDes" class="form-control" required />
                                             </div>
                                         </div>
 
                                         <div class="d-flex flex-row align-items-center mb-4">
                                             <div class="form-outline flex-fill mb-0">
                                                 <label class="form-label">Product Category</label>
-                                                <select name="p_cate" id="" class="form-control">
+                                                <select name="p_cate" id="" class="form-control" required>
                                                     <!-- categories get  -->
                                                     <?php
                                                     include 'Connection.php';
@@ -87,7 +87,7 @@
                                         <div class="d-flex flex-row align-items-center mb-4">
                                             <div class="form-outline flex-fill mb-0">
                                                 <label class="form-label">Product image</label>
-                                                <input type="file" name="pImage" class="form-control" accept="image/jpeg, image/jpg, image/png, image/gif" />
+                                                <input type="file" name="pImage" class="form-control" required accept="image/jpeg, image/jpg, image/png, image/gif" />
                                             </div>
                                         </div>
 

@@ -346,7 +346,11 @@ if (!isset($_SESSION['loginUserName'])) {
 
                         $search_input = $_GET['dashboard_search'];
 
-                        $user_query = "SELECT * FROM users WHERE u_name LIKE '%$search_input%'";
+                        $user_query =
+                            " SELECT * FROM users WHERE
+                            u_name LIKE '%$search_input%' OR
+                            u_email LIKE '%$search_input%' 
+                            ";
                         $user_results = mysqli_query($con, $user_query);
 
                         while ($row_user_product = mysqli_fetch_assoc($user_results)) {
@@ -417,7 +421,12 @@ if (!isset($_SESSION['loginUserName'])) {
 
                 $search_input = $_GET['dashboard_search'];
 
-                $product_query = "SELECT * FROM product WHERE p_name LIKE '%$search_input%'";
+                $product_query = " SELECT * FROM product WHERE 
+                p_name LIKE '%$search_input%' OR 
+                p_price LIKE '%$search_input%' OR
+                p_id LIKE '%$search_input%'  
+                ";
+
                 $search_results = mysqli_query($con, $product_query);
 
                 while ($row_product = mysqli_fetch_assoc($search_results)) {
@@ -430,7 +439,6 @@ if (!isset($_SESSION['loginUserName'])) {
                     $noResult = false;
 
                 ?>
-
 
                     <div class="card-body">
                         <div class="table-responsive">

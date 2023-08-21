@@ -34,9 +34,11 @@
         <div class="card-header py-3">
             <h3 class="m-0 font-weight-bold text-dark">Products</h3>
         </div>
+
         <div class="card-body">
             <div class="table-responsive">
                 <table class="text-center table table-bordered" id="dataTable" width="100%" cellspacing="0">
+
                     <thead>
                         <tr style="color: #555; font-size: 1.2rem;">
                             <th style="vertical-align: middle;">Product ID</th>
@@ -50,22 +52,24 @@
                     </thead>
 
                     <tbody>
-
-                        <!-- view products PHP Code -->
                         <?php
                         include 'Connection.php';
 
-                        // for index counting sequence 
-                        $pID = 1;
+                        // Pagination settings
+                        $records_per_page = 10; // Number of records per page
+                        $current_page = isset($_GET['page']) ? $_GET['page'] : 1; // Current page number
 
-                        $select_product_data = mysqli_query($con, " SELECT * FROM `product` ");
+                        // Calculate offset
+                        $offset = ($current_page - 1) * $records_per_page;
+
+                        // Fetch products with pagination
+                        $select_product_data = mysqli_query($con, "SELECT * FROM `product` LIMIT $offset, $records_per_page");
 
                         while ($fetch_product_data = mysqli_fetch_assoc($select_product_data)) {
-
                         ?>
 
                             <tr>
-                                <td style="vertical-align: middle;"> <?php echo $pID++ ?></td>
+                                <td style="vertical-align: middle;"> <?php echo $fetch_product_data['p_id'] ?></td>
                                 <td style="vertical-align: middle;"> <?php echo $fetch_product_data['p_name'] ?></td>
                                 <td style="vertical-align: middle;"> <?php echo $fetch_product_data['p_price'] ?></td>
                                 <td style="vertical-align: middle;"> <?php echo $fetch_product_data['p_des'] ?></td>
@@ -81,28 +85,46 @@
 
                         ?>
 
+                        <!-- Pagination navigation -->
+                        <tr>
+                            <td colspan="8" style="text-align: center;">
+                                <?php
+                                $total_records = mysqli_query($con, "SELECT COUNT(*) AS total FROM `product`")->fetch_assoc()['total'];
+                                $total_pages = ceil($total_records / $records_per_page);
+
+                                if ($total_pages > 1) {
+                                    for ($i = 1; $i <= $total_pages; $i++) {
+                                        echo "<a href='viewProduct.php?page=$i' class='btn btn-sm btn-outline-info'>$i</a> ";
+                                    }
+                                }
+                                ?>
+                            </td>
+                        </tr>
+
+                        <td colspan="8" style="text-align: right;">
+                            <a href="dashboard_index.php" class="btn btn-primary">Back To DashBoard</a>
+                        </td>
                     </tbody>
                 </table>
             </div>
         </div>
-    </div>
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <!-- Bootstrap core JavaScript-->
+        <script src="vendor/jquery/jquery.min.js"></script>
+        <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Core plugin JavaScript-->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+        <!-- Core plugin JavaScript-->
+        <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
-    <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin-2.min.js"></script>
+        <!-- Custom scripts for all pages-->
+        <script src="js/sb-admin-2.min.js"></script>
 
-    <!-- Page level plugins -->
-    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+        <!-- Page level plugins -->
+        <script src="vendor/datatables/jquery.dataTables.min.js"></script>
+        <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
-    <!-- Page level custom scripts -->
-    <script src="js/demo/datatables-demo.js"></script>
+        <!-- Page level custom scripts -->
+        <script src="js/demo/datatables-demo.js"></script>
 
 </body>
 
