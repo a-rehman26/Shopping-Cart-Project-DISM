@@ -32,7 +32,22 @@
     <!-- DataTales Example -->
     <div class="card shadow mb-4  d-flex justify-content-center align-items-center">
         <div class="card-header py-3">
-            <h3 class="m-0 font-weight-bold text-dark">Products</h3>
+            <div class="d-flex justify-content-between align-items-center">
+                <h3 class="m-0 font-weight-bold text-dark">Products</h3>
+
+                <form method="POST">
+                    <div class="form-group ml-3">
+                        <label for="priceFilter">Price Filter:</label>
+                        <select class="form-control" id="priceFilter" name="priceFilter">
+                            <option value="all">All</option>
+                            <option value="LowToHigh">Price: Low To High</option>
+                            <option value="HighToLow">Price: High To Low</option>
+                        </select>
+                        <button type="submit" class="mt-3 btn btn-sm btn-outline-primary">Apply Filter</button>
+                    </div>
+                </form>
+
+            </div>
         </div>
 
         <div class="card-body">
@@ -56,16 +71,45 @@
                         include 'Connection.php';
 
                         // Pagination settings
+                        // $records_per_page = 10; // Number of records per page
+                        // $current_page = isset($_GET['page']) ? $_GET['page'] : 1; // Current page number
+
+                        // Calculate offset
+                        // $offset = ($current_page - 1) * $records_per_page;
+
+                        // Fetch products with pagination
+                        // $select_product_data = mysqli_query($con, "SELECT * FROM `product` LIMIT $offset, $records_per_page");
+
+                        // Pagination settings
                         $records_per_page = 10; // Number of records per page
                         $current_page = isset($_GET['page']) ? $_GET['page'] : 1; // Current page number
 
                         // Calculate offset
                         $offset = ($current_page - 1) * $records_per_page;
 
-                        // Fetch products with pagination
-                        $select_product_data = mysqli_query($con, "SELECT * FROM `product` LIMIT $offset, $records_per_page");
+                        // Initialize variables
+                        $orderBy = 'ORDER BY CAST(p_price AS DECIMAL) ASC';
+                        // $orderBy = ''; // To store the sorting order
+
+                        // Check if the price filter option is selected
+                        if (isset($_POST['priceFilter'])) {
+                            $filter = $_POST['priceFilter'];
+
+                            // Determine the sorting order based on the filter
+                            if ($filter === 'LowToHigh') {
+                                $orderBy = 'ORDER BY p_price ASC';
+                            } elseif ($filter === 'HighToLow') {
+                                $orderBy = 'ORDER BY p_price DESC';
+                            }
+                        }
+
+                        // Fetch products with pagination and sorting
+                        $query = "SELECT * FROM `product` $orderBy LIMIT $offset, $records_per_page";
+                        $select_product_data = mysqli_query($con, $query);
 
                         while ($fetch_product_data = mysqli_fetch_assoc($select_product_data)) {
+
+                            // while ($fetch_product_data = mysqli_fetch_assoc($select_product_data)) {
                         ?>
 
                             <tr>
