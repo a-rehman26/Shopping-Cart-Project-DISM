@@ -84,4 +84,9 @@ A production‑ready, full‑stack e‑commerce web app built with **HTML, CSS, 
 
 ---
 
+## 📸 Screenshots
+
+(screenshots/home.png)
+
+
 
