@@ -71,11 +71,18 @@ session_start();
             <div class="col-lg-12 col-md-12">
                 <div class="row pb-3">
 
-                    <!-- product fetch in shop page  -->
                     <?php
                     include 'Connection.php';
 
-                    $select_product = mysqli_query($con, " SELECT * FROM `product` ");
+                    // Pagination settings
+                    $itemsPerPage = 16; // Number of products per page
+                    $page = isset($_GET['page']) ? intval($_GET['page']) : 1; // Current page, default to 1
+
+                    // Calculate the starting index for fetching products
+                    $startIndex = ($page - 1) * $itemsPerPage;
+
+                    // Fetch products with pagination
+                    $select_product = mysqli_query($con, "SELECT * FROM `product` LIMIT $startIndex, $itemsPerPage");
 
                     while ($fetch_products = mysqli_fetch_assoc($select_product)) {
 
@@ -113,11 +120,25 @@ session_start();
 
                     }
 
+                    // Calculate the total number of products for pagination
+                    $totalProducts = mysqli_num_rows(mysqli_query($con, "SELECT * FROM `product`"));
+                    $totalPages = ceil($totalProducts / $itemsPerPage);
                     ?>
 
                 </div>
+
+                <!-- Your existing HTML code for displaying products -->
+
+                <!-- Pagination links -->
+                <div class="pagination" style="display: flex; justify-content: center; align-items: center;">
+                    <?php for ($i = 1; $i <= $totalPages; $i++) : ?>
+                        <a href="shop.php?page=<?php echo $i; ?>" class="btn btn-sm btn-outline-primary mr-2 <?php echo ($i === $page) ? 'active' : ''; ?> "><?php echo $i; ?></a>
+                    <?php endfor; ?>
+                </div>
+
             </div>
             <!-- Shop Product End -->
+
         </div>
     </div>
     <!-- Shop End -->

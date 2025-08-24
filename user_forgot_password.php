@@ -1,6 +1,7 @@
 <?php
 session_start();
-
+include 'Connection.php';
+// Rest of the PHP code
 ?>
 
 <!DOCTYPE html>
@@ -64,49 +65,58 @@ session_start();
 <!-- php code  -->
 
 <?php
+session_start();
 include 'Connection.php';
 
 if (isset($_POST['btnF'])) {
 
     $inp_forgot = $_POST['email'];
 
-    $select_email = " SELECT * FROM `users` WHERE u_email = '$inp_forgot' ";
-
+    $select_email = "SELECT * FROM `users` WHERE u_email = '$inp_forgot'";
     $query_email = mysqli_query($con, $select_email);
 
-    $email_rows = mysqli_num_rows($query_email);
-
-    if ($query_email) {
+    if ($query_email && mysqli_num_rows($query_email) > 0) {
 
         $data_fetch = mysqli_fetch_assoc($query_email);
 
-        $UserName = $data_fetch['u_name'];
-        $UserToken = $data_fetch['u_token'];
+        if ($data_fetch) {
+            $UserName = $data_fetch['u_name'];
+            $UserToken = $data_fetch['u_token'];
 
-        $subject = "Changed Password";
-        $body = "Hello: $userName Click Here To Changed Your Password
-        https://spiritual-investiga.000webhostapp.com/Aptech%20Dism%20Project/resetPass.php?TOKENreset=$UserToken
-        ";
-        $sender = "RESETPASSWORD123@gmail.com";
+            $subject = "Changed Password";
+            $body = "Hello $UserName, Click Here To Change Your Password: https://spiritual-investiga.000webhostapp.com/Aptech%20Dism%20Project/resetPass.php?TOKENreset=$UserToken";
+            $sender = "RESETPASSWORD123@gmail.com";
 
-        if (mail($inp_forgot, $sender, $body, $subject)) {
+            $headers = "From: $sender\r\n";
+            $headers .= "Reply-To: $sender\r\n";
+            $headers .= "Content-type: text/html\r\n";
+
+            if (mail($inp_forgot, $subject, $body, $headers)) {
 ?>
-            <script>
-                alert('Reset Password Link Send Your Email')
-            </script>
-        <?php
+                <script>
+                    alert('Reset Password Link Sent To Your Email');
+                </script>
+            <?php
+            } else {
+            ?>
+                <script>
+                    alert('Reset Password Link Not Sent');
+                </script>
+            <?php
+            }
         } else {
-        ?>
+            ?>
             <script>
-                alert('Reset Password Link Not Send Your Email')
+                alert('Data Not Found');
             </script>
         <?php
         }
     } else {
         ?>
         <script>
-            alert('Data Not Found')
+            alert('No Record Found');
         </script>
 <?php
     }
 }
+?>
