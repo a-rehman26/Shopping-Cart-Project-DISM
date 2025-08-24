@@ -65,6 +65,26 @@ session_start();
 
     <!-- Shop Start -->
     <div class="container-fluid pt-5">
+<<<<<<< HEAD
+=======
+
+        <div class="container">
+            <div class="row" style="display: flex; justify-content: right;">
+                <form action="" method="post">
+                    <div class="form-group ml-3 mb-5">
+                        <label for="priceFilter">Price Filter:</label>
+                        <select class="form-control mb-3" id="priceFilter" name="priceFilter">
+                            <option value="all">All</option>
+                            <option value="LowToHigh">Price: Low To High</option>
+                            <option value="HighToLow">Price: High To Low</option>
+                        </select>
+                        <button type="submit" class="btn btn-sm btn-outline-primary">Apply Filter</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+>>>>>>> origin/master
         <div class="row px-xl-5">
 
             <!-- Shop Product Start -->
@@ -74,6 +94,36 @@ session_start();
                     <?php
                     include 'Connection.php';
 
+<<<<<<< HEAD
+=======
+                    // Fetch all products from the database
+                    $select_product = mysqli_query($con, "SELECT * FROM `product`");
+                    $products = [];
+
+                    while ($fetch_products = mysqli_fetch_assoc($select_product)) {
+                        $products[] = $fetch_products;
+                    }
+
+                    // Initialize the price filter
+                    $priceFilter = '';
+
+                    // Check if the price filter option is selected
+                    if (isset($_POST['priceFilter'])) {
+                        $priceFilter = $_POST['priceFilter'];
+
+                        // Sort the products array based on the selected price filter
+                        if ($priceFilter === 'LowToHigh') {
+                            usort($products, function ($a, $b) {
+                                return $a['p_price'] - $b['p_price'];
+                            });
+                        } elseif ($priceFilter === 'HighToLow') {
+                            usort($products, function ($a, $b) {
+                                return $b['p_price'] - $a['p_price'];
+                            });
+                        }
+                    }
+
+>>>>>>> origin/master
                     // Pagination settings
                     $itemsPerPage = 16; // Number of products per page
                     $page = isset($_GET['page']) ? intval($_GET['page']) : 1; // Current page, default to 1
@@ -81,10 +131,18 @@ session_start();
                     // Calculate the starting index for fetching products
                     $startIndex = ($page - 1) * $itemsPerPage;
 
+<<<<<<< HEAD
                     // Fetch products with pagination
                     $select_product = mysqli_query($con, "SELECT * FROM `product` LIMIT $startIndex, $itemsPerPage");
 
                     while ($fetch_products = mysqli_fetch_assoc($select_product)) {
+=======
+                    // Display products with pagination
+                    for ($i = $startIndex; $i < min($startIndex + $itemsPerPage, count($products)); $i++) {
+                        $fetch_products = $products[$i];
+
+                        // Your product display code here
+>>>>>>> origin/master
 
                     ?>
 

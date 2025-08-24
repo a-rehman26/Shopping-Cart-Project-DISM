@@ -1,7 +1,11 @@
 <?php
 session_start();
+<<<<<<< HEAD
 include 'Connection.php';
 // Rest of the PHP code
+=======
+
+>>>>>>> origin/master
 ?>
 
 <!DOCTYPE html>
@@ -65,13 +69,17 @@ include 'Connection.php';
 <!-- php code  -->
 
 <?php
+<<<<<<< HEAD
 session_start();
+=======
+>>>>>>> origin/master
 include 'Connection.php';
 
 if (isset($_POST['btnF'])) {
 
     $inp_forgot = $_POST['email'];
 
+<<<<<<< HEAD
     $select_email = "SELECT * FROM `users` WHERE u_email = '$inp_forgot'";
     $query_email = mysqli_query($con, $select_email);
 
@@ -108,15 +116,53 @@ if (isset($_POST['btnF'])) {
             ?>
             <script>
                 alert('Data Not Found');
+=======
+    $select_email = " SELECT * FROM `users` WHERE u_email = '$inp_forgot' ";
+
+    $query_email = mysqli_query($con, $select_email);
+
+    $email_rows = mysqli_num_rows($query_email);
+
+    if ($query_email) {
+
+        $data_fetch = mysqli_fetch_assoc($query_email);
+
+        $UserName = $data_fetch['u_name'];
+        $UserToken = $data_fetch['u_token'];
+
+        $subject = "Changed Password";
+        $body = "Hello: $userName Click Here To Changed Your Password
+        https://spiritual-investiga.000webhostapp.com/Aptech%20Dism%20Project/resetPass.php?TOKENreset=$UserToken
+        ";
+        $sender = "RESETPASSWORD123@gmail.com";
+
+        if (mail($inp_forgot, $sender, $body, $subject)) {
+?>
+            <script>
+                alert('Reset Password Link Send Your Email')
+            </script>
+        <?php
+        } else {
+        ?>
+            <script>
+                alert('Reset Password Link Not Send Your Email')
+>>>>>>> origin/master
             </script>
         <?php
         }
     } else {
         ?>
         <script>
+<<<<<<< HEAD
             alert('No Record Found');
+=======
+            alert('Data Not Found')
+>>>>>>> origin/master
         </script>
 <?php
     }
 }
+<<<<<<< HEAD
 ?>
+=======
+>>>>>>> origin/master

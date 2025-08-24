@@ -576,7 +576,11 @@
                                             <input type="password" placeholder="Confirm password" name="cPass" required>
                                         </div>
                                         <div class="field">
+<<<<<<< HEAD
                                             <input type="text" pattern="[0-9]{11}" placeholder="Mobile Number" name="mobile">
+=======
+                                            <input type="text" pattern="[0-9]{10}" placeholder="Mobile Number" name="mobile">
+>>>>>>> origin/master
                                         </div>
                                         <div class="field btn">
                                             <div class="btn-layer"></div>

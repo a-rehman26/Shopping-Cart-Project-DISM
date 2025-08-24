@@ -379,6 +379,7 @@ if (!isset($_SESSION['loginUserName'])) {
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                                 Orders</div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800"> 
+<<<<<<< HEAD
                                             
                                             <?php
                                             include "Connection.php";
@@ -397,6 +398,45 @@ if (!isset($_SESSION['loginUserName'])) {
                                             
                                             ?>
                                             
+=======
+
+                                            '
+                        ?>
+
+                            <?php
+
+                            // Your PHP code to fetch and display order count
+                            $count_query = "SELECT COUNT(*) AS order_count FROM orders";
+                            $result_count = mysqli_query($con, $count_query);
+
+                            if (!$result_count) {
+                                die("Query failed: " . mysqli_error($con));
+                            }
+
+                            $row_count = mysqli_fetch_assoc($result_count);
+                            $order_count = $row_count["order_count"];
+
+                            $total_query = "SELECT SUM(order_total) AS total_value FROM orders";
+                            $result_total = mysqli_query($con, $total_query);
+
+                            if (!$result_total) {
+                                die("Query failed: " . mysqli_error($con));
+                            }
+
+                            $row_total = mysqli_fetch_assoc($result_total);
+                            $total_value = $row_total["total_value"];
+
+                            // Display the total orders
+                            echo $order_count;
+
+                            ?>
+
+                            <?php
+
+                            echo
+                            '
+
+>>>>>>> origin/master
                                             </div>
                                         </div>
                                         <div class="col-auto">
@@ -417,6 +457,7 @@ if (!isset($_SESSION['loginUserName'])) {
                                                 Earnings (Order)</div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">
                                             
+<<<<<<< HEAD
                                             <?php
                                             include " Connection.php ";
                                             
@@ -433,11 +474,40 @@ if (!isset($_SESSION['loginUserName'])) {
                                             echo " Total Order Value: RS " . $total_value ;
 
                                             ?>                                            
+=======
+                                            '
+                            ?>
+
+                            <?php
+
+                            $count_query = " SELECT COUNT(*) AS order_count FROM orders ";
+                            $result_count = mysqli_query($con, $count_query);
+                            $row_count = mysqli_fetch_assoc($result_count);
+                            $order_count = $row_count["order_count"];
+
+                            $total_query = " SELECT SUM(order_total) AS total_value FROM orders ";
+                            $result_total = mysqli_query($con, $total_query);
+                            $row_total = mysqli_fetch_assoc($result_total);
+                            $total_value = $row_total["total_value"];
+
+                            echo "RS " . $total_value;
+
+                            ?>
+
+                        <?php
+
+                            echo
+                            '
+>>>>>>> origin/master
 
                                             </div>
                                         </div>
                                         <div class="col-auto">
+<<<<<<< HEAD
                                             <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+=======
+                                        <i class="fa-solid fa-rupee-sign"></i>
+>>>>>>> origin/master
                                         </div>
                                     </div>
                                 </div>

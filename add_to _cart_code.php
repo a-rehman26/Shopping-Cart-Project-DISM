@@ -68,6 +68,7 @@ if (isset($_POST['addToCart'])) {
 }
 ?>
 
+<<<<<<< HEAD
 <!-- cart products end php code -->
 
 <!--  -->
@@ -147,3 +148,6 @@ if (isset($_POST['addToCart'])) {
 <!-- cart products end php code -->
 
 <!--  -->
+=======
+<!-- cart products end php code -->
+>>>>>>> origin/master
